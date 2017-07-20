@@ -4,9 +4,9 @@
 # Initializing Rom Information
 #
 ini_set("rom_name",             "Optimized LineageOS 14.1");
-ini_set("rom_version",          "Stable5");
-ini_set("rom_author",           "JDCTeam");
-ini_set("rom_device",           "Samsung Galaxy S4 Snapdragons");
+ini_set("rom_version",          "Beta1");
+ini_set("rom_author",           "JDCTeam & OptCM Team");
+ini_set("rom_device",           "OnePlus 5 Cheeseburger");
 ini_set("rom_date",             "July 2017");
 
 ###################################################################################################################
@@ -125,7 +125,7 @@ textbox(
 #
 
 menubox(
-	"Optimized LineageOS for jflte",
+	"Optimized LineageOS",
 	"Please select a menu option",
 	"@install",
 	"menu.prop",

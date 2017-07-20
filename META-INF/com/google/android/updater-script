@@ -1,4 +1,5 @@
-assert(getprop("ro.product.device") == "jflte" || getprop("ro.build.product") == "jflte" || getprop("ro.product.device") == "jfltexx" || getprop("ro.build.product") == "jfltexx" || getprop("ro.product.device") == "i9505" || getprop("ro.build.product") == "i9505" || getprop("ro.product.device") == "GT-I9505" || getprop("ro.build.product") == "GT-I9505" || getprop("ro.product.device") == "jgedlte" || getprop("ro.build.product") == "jgedlte" || getprop("ro.product.device") == "i9505g" || getprop("ro.build.product") == "i9505g" || getprop("ro.product.device") == "GT-I9505G" || getprop("ro.build.product") == "GT-I9505G" || getprop("ro.product.device") == "jfltevzw" || getprop("ro.build.product") == "jfltevzw" || getprop("ro.product.device") == "jfltespr" || getprop("ro.build.product") == "jfltespr" || getprop("ro.product.device") == "jflterefreshspr" || getprop("ro.build.product") == "jflterefreshspr" || getprop("ro.product.device") == "jfltetmo" || getprop("ro.build.product") == "jfltetmo" || getprop("ro.product.device") == "jfltecri" || getprop("ro.build.product") == "jfltecri" || getprop("ro.product.device") == "jfltecsp" || getprop("ro.build.product") == "jfltecsp" || getprop("ro.product.device") == "jflteatt" || getprop("ro.build.product") == "jflteatt" || getprop("ro.product.device") == "jfltecan" || getprop("ro.build.product") == "jfltecan" || getprop("ro.product.device") == "jfltetfnatt" || getprop("ro.build.product") == "jfltetfnatt" || getprop("ro.product.device") == "jfltetfntmo" || getprop("ro.build.product") == "jfltetfntmo" || getprop("ro.product.device") == "jflteusc" || getprop("ro.build.product") == "jflteusc" || getprop("ro.product.device") == "jfltezm" || getprop("ro.build.product") == "jfltezm" || abort("This package is for device: jflte,jfltexx,i9505,GT-I9505,jgedlte,i9505g,GT-I9505G,jfltevzw,jfltespr,jflterefreshspr,jfltetmo,jfltecri,jfltecsp,jflteatt,jfltecan,jfltetfnatt,jfltetfntmo,jflteusc,jfltezm; this device is " + getprop("ro.product.device") + "."););
+assert(getprop("ro.build.product") == "OnePlus5" || abort("This package is for device: OnePlus5: " + getprop("ro.product.device") + "."););
+
 ui_print("JDCTeam AROMA Installer v.3");
 ui_print("Optimized LineageOS 14.1");
 ui_print(" ");
@@ -55,17 +56,6 @@ package_extract_dir("system", "/system");
 set_progress(0.3);
 ui_print("Installing Selected Files...");
 
-ifelse(is_substring("I337", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
-ifelse(is_substring("I545", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/vzw/* /system/"));
-ifelse(is_substring("I545", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox sed -i 's/ro.com.google.clientidbase=android-google/ro.com.google.clientidbase=android-verizon/g' /system/build.prop"));
-ifelse(is_substring("L720", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/cdma/* /system/"));
-ifelse(is_substring("M919", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
-ifelse(is_substring("R970", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/usc/* /system/"));
-ifelse(is_substring("S970", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
-ifelse(is_substring("S975", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
-ifelse(is_substring("I9505", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
-ifelse(is_substring("I9507", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
-ifelse(is_substring("I9508", getprop("ro.bootloader")), run_program("/sbin/sh", "-c", "busybox cp -R /system/rild/gsm/* /system/ && busybox rm /system/lib/libcnefeatureconfig.so"));
 delete_recursive("/system/rild");
 ui_print("Making symlinks...");
 set_progress(0.4);
@@ -377,13 +367,13 @@ set_metadata("/system/bin/qmuxd", "uid", 0, "gid", 2000, "mode", 0755, "capabili
 
 set_progress(0.6);
 #################################################################
-# KERNEL SELECTION Alucard
+# KERNEL SELECTION surprise
 
 if
 file_getprop("/tmp/aroma-data/kernel.prop","selected.1") == "1"
 then
 ui_print("");
-ui_print("Installing Alucard Kernel");
+ui_print("Installing surprise Kernel");
 package_extract_dir("jdc/kfix", "/tmp");
 package_extract_file("boot.img", "/tmp/boot.img");
 set_perm(0, 0, 0777, "/tmp/loki_bootloaders");
@@ -423,9 +413,7 @@ set_progress(0.7);
 if
 file_getprop("/tmp/aroma-data/kernel.prop","selected.2") == "1"
 then
-ui_print("Deleting personal kernel tweaks");
-delete_recursive("/data/.b--b");
-delete_recursive("/data/.Synapse");
+
 endif;
 
 #################################################################
