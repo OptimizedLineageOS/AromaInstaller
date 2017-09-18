@@ -361,6 +361,7 @@ delete_recursive("/tmp/boeffla");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("-- Boeffla Kernel installed successfully");
+package_extract_dir("/tmp/boeffla/apk", "/system/priv-app/Boeffla-Config");
 ui_print("  ");
 endif;
 
