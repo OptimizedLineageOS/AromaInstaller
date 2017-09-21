@@ -36,9 +36,8 @@ ui_print("-- Mounting  /system  after format");
 ui_print("  ");
 mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system", "max_batch_time=0,commit=1,data=ordered,barrier=1,errors=panic,nodelalloc");
 ui_print("  ");
-ui_print("Trimming partitions before installation");
+ui_print("-- Trimming partitions before installation");
 package_extract_file("system/bin/emmc_trim.sh", "/tmp/emmc_trim.sh");
-set_perm(0, 0, 0777, "/tmp/emmc_trim.sh");
 run_program("/tmp/emmc_trim.sh");
 ui_print("  ");
 ui_print("-- Extracting files to /system");
@@ -353,15 +352,16 @@ file_getprop("/tmp/aroma/rom.prop","selected.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Boeffla Kernel...");
-
-package_extract_dir("palm/boeffla", "/tmp/boeffla");
+package_extract_dir("palm/boeffla/install", "/tmp/boeffla");
 run_program("/sbin/busybox", "unzip", "/tmp/boeffla/boeffla.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/boeffla");
 run_program("/sbin/busybox", "sh", "/tmp/boeffla/META-INF/com/google/android/update-binary", "null", "1", "/tmp/boeffla/boeffla.zip");
 delete_recursive("/tmp/boeffla");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("-- Boeffla Kernel installed successfully");
-package_extract_dir("/tmp/boeffla/apk", "/system/priv-app/Boeffla-Config");
+package_extract_dir("palm/boeffla/apk", "/system/priv-app/Boeffla-Config");
+ui_print("  ");
+ui_print("-- Boeffla-Config App installed successfully");
 ui_print("  ");
 endif;
 
@@ -376,6 +376,43 @@ ui_print("  ");
 ui_print("-- Custom Kernel Installation is being skipped");
 ui_print("  ");
 endif;
+
+
+#####################################################
+set_progress(0.50);
+ui_print("########################################");
+#####################################################
+# Add No-Verity
+
+if
+file_getprop("/tmp/aroma/rom.prop","selected.3") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing No-Verity...");
+ui_print("  ");
+package_extract_dir("palm/noverity", "/tmp/noverity");
+run_program("/sbin/busybox", "unzip", "/tmp/noverity/noverity.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/noverity");
+run_program("/sbin/busybox", "sh", "/tmp/noverity/META-INF/com/google/android/update-binary", "null", "1", "/tmp/noverity/noverity.zip");
+delete_recursive("/tmp/noverity");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- No-Verity installed successfully");
+ui_print("  ");
+endif;
+
+
+#####################################################
+# No Add No-Verity
+
+if
+file_getprop("/tmp/aroma/rom.prop","selected.3") == "2"
+then
+ui_print("  ");
+ui_print("-- No-Verity is being skipped");
+ui_print("  ");
+endif;
+
 
 #####################################################
 set_progress(0.55);
@@ -446,12 +483,12 @@ then
 ui_print("  ");
 ui_print("-- ViPER4Arise is installing");
 run_program("/sbin/busybox", "mount", "/data");
-package_extract_dir("palm/arise1/data", "/data");
-package_extract_dir("palm/arise2", "/tmp/arise2");
-run_program("/sbin/busybox", "unzip", "/tmp/arise2/arise2.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/arise2");
-run_program("/sbin/busybox", "sh", "/tmp/arise2/META-INF/com/google/android/update-binary", "null", "1", "/tmp/arise2/arise2.zip");
+package_extract_dir("palm/arise/prop", "/data/media/0");
+package_extract_dir("palm/arise/install", "/tmp/arise");
+run_program("/sbin/busybox", "unzip", "/tmp/arise/arise.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/arise");
+run_program("/sbin/busybox", "sh", "/tmp/arise/META-INF/com/google/android/update-binary", "null", "1", "/tmp/arise/arise.zip");
 delete_recursive("/system/priv-app/AudioFX");
-delete_recursive("/tmp/arise2");
+delete_recursive("/tmp/arise");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
@@ -485,6 +522,7 @@ ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
 ui_print("  ");
 package_extract_dir("palm/google/launcher", "/system/priv-app/NexusLauncher");
 package_extract_dir("palm/google/wallpaper", "/system/priv-app/Wallpaper");
+delete_recursive("/system/priv-app/Lawnchair");
 ui_print("-- Pixel Launcher installed successfully");
 ui_print("  ");
 endif;
@@ -500,13 +538,14 @@ ui_print("  ");
 ui_print("-- Installing Lawnchair Launcher...");
 ui_print("  ");
 package_extract_dir("palm/lawnchair", "/system/priv-app/Lawnchair");
+delete_recursive("/system/priv-app/NexusLauncher");
 ui_print("-- Lawnchair Launcher installed successfully");
 ui_print("  ");
 endif;
 
 
 #####################################################
-#No Add Launcher
+# No Add Launcher
 
 if
 file_getprop("/tmp/aroma/add1.prop","selected.3") == "3"
@@ -520,11 +559,16 @@ endif;
 #####################################################
 set_progress(0.80);
 ui_print("########################################");
+
+if 
+file_getprop("/tmp/aroma/add1.prop","selected.1") == "1"
+then
+
 #####################################################
 # Add Ad-free Youtube 
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.1") == "1"
+file_getprop("/tmp/aroma/magisk.prop","selected.1") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Ad-free Youtube for Magisk...");
@@ -532,35 +576,40 @@ ui_print("  ");
 package_extract_dir("palm/iytbp", "/tmp/iytbp");
 run_program("/sbin/busybox", "unzip", "/tmp/iytbp/iytbp.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/iytbp");
 run_program("/sbin/busybox", "sh", "/tmp/iytbp/META-INF/com/google/android/update-binary", "null", "1", "/tmp/iytbp/iytbp.zip");
+run_program("/sbin/busybox", "unzip", "/tmp/iytbp/maxres.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/iytbp");
+run_program("/sbin/busybox", "sh", "/tmp/iytbp/META-INF/com/google/android/update-binary", "null", "1", "/tmp/iytbp/maxres.zip");
 delete_recursive("/tmp/iytbp");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
 ui_print("-- Ad-Free Youtube installed successfully");
 ui_print("  ");
+ui_print("########################################");
 endif;
 
 
 #####################################################
-#No Add Ad-Free Youtube
+# No Add Ad-Free Youtube 4K
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.1") == "2"
+file_getprop("/tmp/aroma/magisk.prop","selected.1") == "2"
 then
 ui_print("  ");
 ui_print("-- YouTube Installation is being skipped");
 ui_print("  ");
+ui_print("########################################");
 endif;
 
+endif;
 
 #####################################################
 set_progress(0.84);
-ui_print("########################################");
+#ui_print("#######################################");
 #####################################################
 # Add Mixplorer
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.2") == "1"
+file_getprop("/tmp/aroma/add2.prop","selected.1") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Mixplorer...");
@@ -572,10 +621,10 @@ endif;
 
 
 #####################################################
-#No Add Mixplorer
+# No Add Mixplorer
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.2") == "2"
+file_getprop("/tmp/aroma/add2.prop","selected.1") == "2"
 then
 ui_print("  ");
 ui_print("-- Mixplorer Installation is being skipped");
@@ -590,7 +639,7 @@ ui_print("########################################");
 # Add OOS Camera
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.3") == "1"
+file_getprop("/tmp/aroma/add2.prop","selected.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing OOS Camera...");
@@ -608,10 +657,10 @@ endif;
 
 
 #####################################################
-#No Add Randoms
+# No Add OOS Camera
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.3") == "2"
+file_getprop("/tmp/aroma/add2.prop","selected.2") == "2"
 then
 ui_print("  ");
 ui_print("-- OOS Camera Installation is being skipped");

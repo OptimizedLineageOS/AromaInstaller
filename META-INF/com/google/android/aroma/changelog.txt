@@ -1,5 +1,6 @@
 
-<b><u>v1.0</u></b>
+<b><u>BETA-FINAL</u></b>
+= BETA Testing
 = Initial Release
 
 -------------------------------------------------
