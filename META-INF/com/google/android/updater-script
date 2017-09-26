@@ -322,7 +322,29 @@ ui_print("-- boot.img installed successfully");
 ui_print("  ");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
-ui_print("-- Palm Project installed successfully");
+
+ui_print("  ");
+ui_print("-- Installing Magisk binaries...");
+ui_print("  ");
+package_extract_dir("palm/magisk", "/tmp/magisk");
+run_program("/sbin/busybox", "unzip", "/tmp/magisk/magisk.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/magisk");
+run_program("/sbin/busybox", "sh", "/tmp/magisk/META-INF/com/google/android/update-binary", "null", "1", "/tmp/magisk/magisk.zip");
+delete_recursive("/tmp/magisk");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Magisk installed successfully");
+ui_print("  ");
+
+package_extract_dir("palm/snapchat-fix", "/tmp/snapchat-fix");
+run_program("/sbin/busybox", "unzip", "/tmp/snapchat-fix/snapchat-fix.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/snapchat-fix");
+run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/android/update-binary", "null", "1", "/tmp/snapchat-fix/snapchat-fix.zip");
+delete_recursive("/tmp/snapchat-fix");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+
+ui_print("  ");
+ui_print("-- PALM PROJECT installed successfully");
 ui_print("  ");
 endif;
 
@@ -416,70 +438,13 @@ endif;
 
 
 #####################################################
-set_progress(0.55);
-ui_print("########################################");
-#####################################################
-# Add Magisk
-
-if
-file_getprop("/tmp/aroma/add1.prop","selected.1") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Magisk binaries...");
-ui_print("  ");
-package_extract_dir("palm/magisk", "/tmp/magisk");
-run_program("/sbin/busybox", "unzip", "/tmp/magisk/magisk.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/magisk");
-run_program("/sbin/busybox", "sh", "/tmp/magisk/META-INF/com/google/android/update-binary", "null", "1", "/tmp/magisk/magisk.zip");
-delete_recursive("/tmp/magisk");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("-- Magisk installed successfully");
-ui_print("  ");
-endif;
-
-
-#####################################################
-# Add SuperSU
-
-if
-file_getprop("/tmp/aroma/add1.prop","selected.1") == "2"
-then
-ui_print("  ");
-ui_print("-- Installing SuperSU binaries...");
-ui_print("  ");
-package_extract_dir("palm/supersu", "/tmp/supersu");
-run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/supersu");
-run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/update-binary", "null", "1", "/tmp/supersu/supersu.zip");
-delete_recursive("/tmp/supersu");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("-- SuperSU installed successfully");
-ui_print("  ");
-endif;
-
-
-#####################################################
-# No Add Root
-
-if
-file_getprop("/tmp/aroma/add1.prop","selected.1") == "3"
-then
-ui_print("  ");
-ui_print("-- Root Installation is being skipped");
-ui_print("  ");
-endif;
-
-
-#####################################################
 set_progress(0.65);
 ui_print("########################################");
 #####################################################
 # Add Viper4Arise
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.2") == "1"
+file_getprop("/tmp/aroma/add1.prop","selected.1") == "1"
 then
 ui_print("  ");
 ui_print("-- ViPER4Arise is installing");
@@ -501,7 +466,7 @@ endif;
 # No Add Viper4Arise
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.2") == "2"
+file_getprop("/tmp/aroma/add1.prop","selected.1") == "2"
 then
 ui_print("  ");
 ui_print("-- Viper4Arise Installation is being skipped");
@@ -516,7 +481,7 @@ ui_print("########################################");
 # Add Pixel Launcher 
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.3") == "1"
+file_getprop("/tmp/aroma/add1.prop","selected.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
@@ -533,7 +498,7 @@ endif;
 # Add Lawnchair Launcher 
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.3") == "2"
+file_getprop("/tmp/aroma/add1.prop","selected.2") == "2"
 then
 ui_print("  ");
 ui_print("-- Installing Lawnchair Launcher...");
@@ -549,7 +514,7 @@ endif;
 # No Add Launcher
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.3") == "3"
+file_getprop("/tmp/aroma/add1.prop","selected.2") == "3"
 then
 ui_print("  ");
 ui_print("-- Launcher Installation is being skipped");
@@ -560,11 +525,6 @@ endif;
 #####################################################
 set_progress(0.80);
 ui_print("########################################");
-
-if 
-file_getprop("/tmp/aroma/add1.prop","selected.1") == "1"
-then
-
 #####################################################
 # Add Ad-free Youtube 
 
@@ -585,7 +545,6 @@ run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
 ui_print("-- Ad-Free Youtube installed successfully");
 ui_print("  ");
-ui_print("########################################");
 endif;
 
 
@@ -598,51 +557,12 @@ then
 ui_print("  ");
 ui_print("-- YouTube Installation is being skipped");
 ui_print("  ");
-ui_print("########################################");
-endif;
-
-
-set_progress(0.82);
-#####################################################
-# Add Snapchat-Fix
-
-if
-file_getprop("/tmp/aroma/magisk.prop","selected.2") == "1"
-then
-ui_print("  ");
-ui_print("-- Snapchat-Fix for Magisk...");
-ui_print("  ");
-package_extract_dir("palm/snapchat-fix", "/tmp/snapchat-fix");
-run_program("/sbin/busybox", "unzip", "/tmp/snapchat-fix/snapchat-fix.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/snapchat-fix");
-run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/android/update-binary", "null", "1", "/tmp/snapchat-fix/snapchat-fix.zip");
-delete_recursive("/tmp/snapchat-fix");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("-- Snapchat-Fix installed successfully");
-ui_print("  ");
-ui_print("########################################");
-endif;
-
-
-#####################################################
-# No Add Snapchat-Fix
-
-if
-file_getprop("/tmp/aroma/magisk.prop","selected.2") == "2"
-then
-ui_print("  ");
-ui_print("-- Snapchat-Fix Installation is being skipped");
-ui_print("  ");
-ui_print("########################################");
-endif;
-
 endif;
 
 
 #####################################################
 set_progress(0.85);
-#ui_print("#######################################");
+ui_print("#######################################");
 #####################################################
 # Add Mixplorer
 

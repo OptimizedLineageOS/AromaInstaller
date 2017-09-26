@@ -108,7 +108,7 @@ selectbox(
     "No Changes",                           ""                                                 ,0,   #-- selected.1 = 2
       
 	"Kernel Corner",                        ""                                                 ,2,   #-- Group 2. key = "selected.2"
-	"Add Boeffla Kernel",                   "Beta4.. Contains Boeffla-Config App"              ,1,   #-- selected.2 = 1
+	"Add Boeffla Kernel",                   "v1.04b4.. Contains Boeffla-Config App"              ,1,   #-- selected.2 = 1
 	"No Changes",                           ""                                                 ,0,   #-- selected.2 = 2
 
 	"No-Verity Corner",                     ""                                                 ,2,   #-- Group 3. key = "selected.3"
@@ -137,20 +137,15 @@ selectbox(
 	  #-----------------------------------[ Selectbox With Groups ]----------------------------------#
 	  # TITLE            |  SUBTITLE                                                 | Initial Value #
 	  #------------------+-----------------------------------------------------------+---------------#
-
-	"Root Corner",                                 ""                                  ,2,	 #-- Group 1. key = "selected.1"
-	"Add Magisk",                                  "v14.0"                             ,0,   #-- selected.1 = 1
-	"Add SuperSU",                                 "v2.82"                             ,0,   #-- selected.1 = 2
-	"No Changes",                                  ""                                  ,1,   #-- selected.1 = 3
 		
-	"Audio Corner",                                ""                                  ,2,	 #-- Group 2. key = "selected.2"
-	"Add Viper4Arise",                             "Magnum+Opus"                       ,0,	 #-- selected.2 = 1
-	"No Changes",                                  ""                                  ,1,	 #-- selected.2 = 2
+	"Audio Corner",                                ""                                  ,2,	 #-- Group 1. key = "selected.1"
+	"Add Viper4Arise",                             "Magnum+Opus"                       ,0,	 #-- selected.1 = 1
+	"No Changes",                                  ""                                  ,1,	 #-- selected.1 = 2
 	
-	"Launcher Corner",                             ""                                  ,2,	 #-- Group 3. key = "selected.3"
-	"Add Pixel Launcher",                          ""                                  ,0,	 #-- selected.3 = 1
-	"Add Lawnchair Launcher",                      ""                                  ,0,	 #-- selected.3 = 2
-	"No Changes",                                  ""                                  ,1	 #-- selected.3 = 3
+	"Launcher Corner",                             ""                                  ,2,	 #-- Group 2. key = "selected.2"
+	"Add Pixel Launcher",                          ""                                  ,0,	 #-- selected.2 = 1
+	"Add Lawnchair Launcher",                      ""                                  ,0,	 #-- selected.2 = 2
+	"No Changes",                                  ""                                  ,1	 #-- selected.2 = 3
 
 
 	  #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
@@ -177,7 +172,7 @@ selectbox(
 
 	  
 	"Mixplorer Corner",                            ""                                  ,2,	 #-- Group 1. key = "selected.1"
-	"Add Mixplorer",                               "Root Explorer"                     ,0,	 #-- selected.1 = 1
+	"Add Mixplorer",                               "v6.20.4.. Root Explorer"           ,0,	 #-- selected.1 = 1
 	"No Changes",                                  ""                                  ,1,	 #-- selected.1 = 2
 	
 	"Camera Corner",                               ""                                  ,2,	 #-- Group 2. key = "selected.2"
@@ -189,13 +184,9 @@ selectbox(
 );
 
 
-
-#IF INSTALLATION OF MAGISK IS SELECTED
-if prop("add1.prop","selected.1")=="1" then
-
     selectbox(
     #-- Title
-      "MAGISK MODULES",
+      "ADD MAGISK MODULES",
 	  
     #-- Sub Title
       "Please select:\n",
@@ -212,17 +203,12 @@ if prop("add1.prop","selected.1")=="1" then
 
 	"YouTube Corner",                              ""                                  ,2,	 #-- Group 1. key = "selected.1"
 	"Add Ad-Free YouTube 4K",                      ""                                  ,0,   #-- selected.1 = 1
-	"No Changes",                                  ""                                  ,1,   #-- selected.1 = 2
-	
-	"Snapchat-Fix Corner",                              ""                           ,2,	 #-- Group 2. key = "selected.2"
-	"Add Snapchat-Fix",                      "Corrects Selfie Cam"               ,0,   #-- selected.2 = 1
-	"No Changes",                                  ""                                  ,1    #-- selected.2 = 2
+	"No Changes",                                  ""                                  ,1    #-- selected.1 = 2
 	
 
 	  #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
     );
 
-endif;
 
 
 selectbox(
