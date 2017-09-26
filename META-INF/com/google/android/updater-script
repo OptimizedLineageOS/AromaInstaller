@@ -1,5 +1,4 @@
 assert(getprop("ro.product.device") == "cheeseburger" || getprop("ro.build.product") == "cheeseburger" || abort("E3004: This package is for device: cheeseburger; this device is " + getprop("ro.product.device") + "."););
-ui_print("  ");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
@@ -29,7 +28,7 @@ run_program("/tmp/install/bin/backuptool.sh", "backup");
 unmount("/system");
 show_progress(0.10, 0);
 ui_print("  ");
-ui_print("-- Format  /system");
+ui_print("-- Formatting  /system");
 ui_print("  ");
 format("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "0", "/system");
 ui_print("-- Mounting  /system  after format");
@@ -334,6 +333,8 @@ endif;
 if
 file_getprop("/tmp/aroma/rom.prop","selected.1") == "2"
 then
+ui_print("-- Mounting  /system");
+ui_print("  ");
 ui_print("########################################");
 ui_print("  ");
 ui_print("-- Palm Project Installation is being skipped");
@@ -600,10 +601,47 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
+
+set_progress(0.82);
+#####################################################
+# Add Snapchat-Fix
+
+if
+file_getprop("/tmp/aroma/magisk.prop","selected.2") == "1"
+then
+ui_print("  ");
+ui_print("-- Snapchat-Fix for Magisk...");
+ui_print("  ");
+package_extract_dir("palm/snapchat-fix", "/tmp/snapchat-fix");
+run_program("/sbin/busybox", "unzip", "/tmp/snapchat-fix/snapchat-fix.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/snapchat-fix");
+run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/android/update-binary", "null", "1", "/tmp/snapchat-fix/snapchat-fix.zip");
+delete_recursive("/tmp/snapchat-fix");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Snapchat-Fix installed successfully");
+ui_print("  ");
+ui_print("########################################");
 endif;
 
+
 #####################################################
-set_progress(0.84);
+# No Add Snapchat-Fix
+
+if
+file_getprop("/tmp/aroma/magisk.prop","selected.2") == "2"
+then
+ui_print("  ");
+ui_print("-- Snapchat-Fix Installation is being skipped");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+endif;
+
+
+#####################################################
+set_progress(0.85);
 #ui_print("#######################################");
 #####################################################
 # Add Mixplorer
@@ -636,34 +674,28 @@ endif;
 set_progress(0.88);
 ui_print("########################################");
 #####################################################
-# Add OOS Camera
+# Add Google Camera
 
 if
 file_getprop("/tmp/aroma/add2.prop","selected.2") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing OOS Camera...");
+ui_print("-- Installing Google Camera...");
 ui_print("  ");
-package_extract_dir("palm/ooscamera/system", "/system");
-ui_print("--Setting permissions...");
-ui_print("  ");
-set_metadata_recursive("/system/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode",0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/lib64", "uid", 0, "gid", 0, "dmode", 0755, "fmode",0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/vendor/lib", "uid", 0, "gid", 0, "dmode", 0755, "fmode",0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-set_metadata_recursive("/system/vendor/lib64", "uid", 0, "gid", 0, "dmode", 0755, "fmode",0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
-ui_print("-- OOS Camera installed successfully");
+package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+ui_print("-- Google Camera installed successfully");
 ui_print("  ");
 endif;
 
 
 #####################################################
-# No Add OOS Camera
+# No Add Google Camera
 
 if
 file_getprop("/tmp/aroma/add2.prop","selected.2") == "2"
 then
 ui_print("  ");
-ui_print("-- OOS Camera Installation is being skipped");
+ui_print("-- Google Camera Installation is being skipped");
 ui_print("  ");
 endif;
 
