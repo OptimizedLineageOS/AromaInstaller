@@ -108,8 +108,9 @@ selectbox(
     "No Changes",                           ""                                                 ,0,   #-- selected.1 = 2
       
 	"Kernel Corner",                        ""                                                 ,2,   #-- Group 2. key = "selected.2"
-	"Add Boeffla Kernel",                   "v1.04b4.. Contains Boeffla-Config App"              ,1,   #-- selected.2 = 1
-	"No Changes",                           ""                                                 ,0,   #-- selected.2 = 2
+	"Add Boeffla Kernel",                   "v1.04b4.. Contains Boeffla-Config App"            ,1,   #-- selected.2 = 1
+	"Add Blu-Spark Kernel",                 ""                                                 ,0,   #-- selected.2 = 2
+	"No Changes",                           ""                                                 ,0,   #-- selected.2 = 3
 
 	"No-Verity Corner",                     ""                                                 ,2,   #-- Group 3. key = "selected.3"
 	"Install No-Verity",                    "Removes Device-Mapper-Verity"                     ,1,   #-- selected.3 = 1
