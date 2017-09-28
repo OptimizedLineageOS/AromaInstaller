@@ -40,6 +40,7 @@ ui_print("-- Trimming partitions before installation");
 package_extract_dir("palm/trim", "/tmp/trim");
 set_metadata_recursive("/tmp/trim", "uid", 0, "gid", 0, "dmode", 0777, "fmode", 0777);
 run_program("/tmp/trim/emmc_trim.sh");
+delete_recursive("/tmp/trim");
 ui_print("  ");
 ui_print("-- Extracting files to /system");
 ui_print("-- BE PATIENT! This may take up to 2 minutes");
