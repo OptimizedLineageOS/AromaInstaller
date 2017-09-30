@@ -519,33 +519,15 @@ ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
 ui_print("  ");
 package_extract_dir("palm/google/launcher", "/system/priv-app/NexusLauncher");
 package_extract_dir("palm/google/wallpaper", "/system/priv-app/Wallpaper");
-delete_recursive("/system/priv-app/Lawnchair");
 ui_print("-- Pixel Launcher installed successfully");
 ui_print("  ");
 endif;
-
-
-#####################################################
-# Add Lawnchair Launcher 
-
-if
-file_getprop("/tmp/aroma/add1.prop","selected.2") == "2"
-then
-ui_print("  ");
-ui_print("-- Installing Lawnchair Launcher...");
-ui_print("  ");
-package_extract_dir("palm/lawnchair", "/system/priv-app/Lawnchair");
-delete_recursive("/system/priv-app/NexusLauncher");
-ui_print("-- Lawnchair Launcher installed successfully");
-ui_print("  ");
-endif;
-
 
 #####################################################
 # No Add Launcher
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.2") == "3"
+file_getprop("/tmp/aroma/add1.prop","selected.2") == "2"
 then
 ui_print("  ");
 ui_print("-- Launcher Installation is being skipped");
