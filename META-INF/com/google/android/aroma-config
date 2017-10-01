@@ -145,11 +145,7 @@ selectbox(
 	
 	"Launcher Corner",                             ""                                  ,2,	 #-- Group 2. key = "selected.2"
 	"Add Pixel Launcher",                          ""                                  ,0,	 #-- selected.2 = 1
-	"No Changes",                                  ""                                  ,1,	 #-- selected.2 = 2
-
-	"Buttons Corner", 			       ""				   ,2,   #-- Group 3. key = "selected.3"
-        "Add button remapper app",                     "Made by Irishin at PlayStore"      ,1,   #-- selected.3 = 1
-        "No Changes",                                  ""                                  ,0    #-- selected.3 = 2
+	"No Changes",                                  ""                                  ,1	 #-- selected.2 = 2
 
 
 	  #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
