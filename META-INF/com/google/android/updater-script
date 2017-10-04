@@ -396,35 +396,10 @@ endif;
 
 
 #####################################################
-# Add Bluspark Kernel
-
-if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
-then
-ui_print("  ");
-ui_print("-- Installing Blu-Spark Kernel...");
-ui_print("  ");
-
-package_extract_dir("palm/bluspark/kernel", "/tmp1");
-set_metadata_recursive("/tmp1", "uid", 0, "gid", 0, "dmode", 0777, "fmode", 0777);
-package_extract_dir("palm/bluspark/system", "/system");
-set_metadata_recursive("/system/lib/modules", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);
-unmount("/system");
-ui_print("Building and Flashing boot.img");
-run_program("/tmp1/blu_spark_tweaks.sh");
-run_program("/sbin/busybox", "mount", "/system");
-
-ui_print("  ");
-ui_print("-- Blu-Spark Kernel installed successfully");
-ui_print("  ");
-endif;
-
-
-#####################################################
 # No KERNEL INSTALL or STOCK KERNEL
 
 if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "3"
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
 then
 ui_print("  ");
 ui_print("-- Custom Kernel Installation is being skipped");
