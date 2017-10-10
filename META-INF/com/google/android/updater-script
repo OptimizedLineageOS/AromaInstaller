@@ -534,7 +534,7 @@ package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
 ui_print("########################################");
 endif;
 
-set_progress(0.65);
+set_progress(0.63);
 #-------------------------------------------------------------------
 # Add Mixplorer
 
@@ -548,15 +548,29 @@ package_extract_dir("palm/mixplorer", "/system/priv-app/Mixplorer");
 ui_print("########################################");
 endif;
 
+set_progress(0.67);
+#-------------------------------------------------------------------
+# Add SamsungOne Font
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing SamsungOne Font...");
+ui_print("  ");
+package_extract_dir("palm/samsungone", "/system/fonts");
+ui_print("########################################");
+endif;
+
 set_progress(0.70);
 #-------------------------------------------------------------------
-# Add Xposed
+# Add Xposed Framework
 
 if
 file_getprop("/tmp/aroma/magisk.prop","item.1.1") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing Xposed...");
+ui_print("-- Installing Xposed Framework [Magisk Module]...");
 ui_print("  ");
 package_extract_dir("palm/xposed/apk", "/system/priv-app/Xposed");
 package_extract_dir("palm/xposed/install", "/tmp/xposed");
@@ -577,7 +591,7 @@ if
 file_getprop("/tmp/aroma/magisk.prop","item.1.2") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing Ad-free Youtube for Magisk...");
+ui_print("-- Installing Ad-Free Youtube 4K [Magisk Module]...");
 ui_print("  ");
 package_extract_dir("palm/iytbp", "/tmp/iytbp");
 run_program("/sbin/busybox", "unzip", "/tmp/iytbp/iytbp.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/iytbp");
@@ -599,7 +613,7 @@ if
 file_getprop("/tmp/aroma/magisk.prop","item.1.3") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing iOS11 Emojis...");
+ui_print("-- Installing iOS11 Emojis [Magisk Module]...");
 ui_print("  ");
 run_program("/sbin/busybox", "mount", "/data");
 package_extract_dir("palm/iosemojis", "/tmp/iosemojis");
@@ -612,15 +626,15 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.85);
+set_progress(0.83);
 #-------------------------------------------------------------------
-# Add Google Dialer
+# Update Google Dialer/Contacts
 
 if
 file_getprop("/tmp/aroma/magisk.prop","item.1.4") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing Google Dialer...");
+ui_print("-- Updating Google Dialer/Contacts [Magisk Module]...");
 ui_print("  ");
 package_extract_dir("palm/google/dialer", "/tmp/dialer");
 run_program("/sbin/busybox", "unzip", "/tmp/dialer/dialer.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/dialer");
@@ -630,6 +644,27 @@ ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 delete_recursive("/system/priv-app/Contacts");
 delete_recursive("/system/priv-app/Dialer");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+
+set_progress(0.87);
+#-------------------------------------------------------------------
+# Add HEVC
+
+if
+file_getprop("/tmp/aroma/magisk.prop","item.1.5") == "1"
+then
+ui_print("  ");
+ui_print("-- Enabling HEVC/H.265 Video Recording [Magisk Module]...");
+ui_print("  ");
+package_extract_dir("palm/hevc", "/tmp/hevc");
+run_program("/sbin/busybox", "unzip", "/tmp/hevc/hevc.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/hevc");
+run_program("/sbin/busybox", "sh", "/tmp/hevc/META-INF/com/google/android/update-binary", "null", "1", "/tmp/hevc/hevc.zip");
+delete_recursive("/tmp/hevc");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
 ui_print("########################################");
 endif;

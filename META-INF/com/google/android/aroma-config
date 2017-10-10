@@ -145,7 +145,8 @@ checkbox(
     "Add Google Camera",                           ""                                  ,0,	 #-- selected.1 = 4
     "Add Substratum Theme Engine",                 ""                                  ,0,   #-- selected.1 = 5
     "Add Ad-Away",                                 ""                                  ,0,   #-- selected.1 = 6
-	"Add Mixplorer",                               "v6.20.4.. Root Explorer"           ,0	 #-- selected.1 = 7	
+	"Add Mixplorer",                               "v6.20.4.. Root Explorer"           ,0,	 #-- selected.1 = 7	
+	"Add SamsungOne Font",                         ""                                  ,0	 #-- selected.1 = 8		
 
 
 	
@@ -176,7 +177,8 @@ checkbox(
 	"Add Xposed Framework",                        ""                                  ,0,   #-- selected.1 = 1
 	"Add Ad-Free YouTube 4K",                      ""                                  ,0,   #-- selected.1 = 2
     "Add iOS11 Emojis",                            ""                                  ,0,   #-- selected.1 = 3
-	"Update Google Dialer/Contacts",              "Don't Forget to Change App Permissions"         ,0    #-- selected.1 = 4
+	"Update Google Dialer/Contacts",     "Don't Forget to Change App Permissions"      ,0,   #-- selected.1 = 4
+    "Enable HEVC/H.265 Video Recording",           ""                                  ,0    #-- selected.1 = 5	
 	
 
 	  #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
