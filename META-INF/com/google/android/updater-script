@@ -27,7 +27,7 @@ ui_print("  ");
 mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system", "");
 run_program("/tmp/install/bin/backuptool.sh", "backup");
 unmount("/system");
-show_progress(0.10, 0);
+show_progress(0.05, 0);
 ui_print("  ");
 ui_print("-- Formatting  /system");
 ui_print("  ");
@@ -48,7 +48,7 @@ ui_print("  ");
 package_extract_dir("system", "/system");
 ui_print("-- Extracting files completed successfully");
 ui_print("  ");
-show_progress(0.20, 0);
+show_progress(0.10, 0);
 ui_print("-- Setting symlinks...");
 ui_print("  ");
 symlink("../bin/toybox", "/system/xbin/ps");
@@ -168,7 +168,7 @@ symlink("toybox", "/system/bin/acpi", "/system/bin/arp",
         "/system/bin/whoami", "/system/bin/xargs", "/system/bin/xxd",
         "/system/bin/xzcat",
         "/system/bin/yes");
-show_progress(0.25, 0);
+show_progress(0.15, 0);
 ui_print("-- Setting Metadata...");
 ui_print("  ");
 set_metadata_recursive("/system", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", "0x0", "selabel", "u:object_r:system_file:s0");
@@ -317,7 +317,7 @@ set_metadata("/system/xbin/perfprofd", "uid", 0, "gid", 2000, "mode", 0755, "cap
 set_metadata("/system/xbin/procmem", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
 set_metadata("/system/xbin/su", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:su_exec:s0");
 run_program("/tmp/install/bin/backuptool.sh", "restore");
-show_progress(0.30, 0);
+show_progress(0.20, 0);
 ui_print("-- Installing boot.img...");
 ui_print("  ");
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
@@ -371,7 +371,7 @@ endif;
 
 
 #####################################################
-set_progress(0.40);
+set_progress(0.25);
 ui_print("########################################");
 #####################################################
 # Add Boeffla Kernel
@@ -406,11 +406,10 @@ ui_print("-- Custom Kernel Installation is being skipped");
 ui_print("  ");
 endif;
 
-
-#####################################################
-set_progress(0.50);
+set_progress(0.30);
 ui_print("########################################");
-#####################################################
+
+#-------------------------------------------------------------------
 # Add No-Verity
 
 if
@@ -430,8 +429,7 @@ ui_print("-- No-Verity installed successfully");
 ui_print("  ");
 endif;
 
-
-#####################################################
+#-------------------------------------------------------------------
 # No Add No-Verity
 
 if
@@ -442,15 +440,14 @@ ui_print("-- No-Verity is being skipped");
 ui_print("  ");
 endif;
 
-
-#####################################################
-set_progress(0.65);
+set_progress(0.35);
 ui_print("########################################");
-#####################################################
+
+#-------------------------------------------------------------------
 # Add Viper4Arise
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.1") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.1") == "1"
 then
 ui_print("  ");
 ui_print("-- ViPER4Arise is installing");
@@ -459,65 +456,125 @@ package_extract_dir("palm/arise/prop", "/data/media/0");
 package_extract_dir("palm/arise/install", "/tmp/arise");
 run_program("/sbin/busybox", "unzip", "/tmp/arise/arise.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/arise");
 run_program("/sbin/busybox", "sh", "/tmp/arise/META-INF/com/google/android/update-binary", "null", "1", "/tmp/arise/arise.zip");
-delete_recursive("/system/priv-app/AudioFX");
 delete_recursive("/tmp/arise");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("-- ViPER4Arise installed successfully");
-ui_print("  ");
-endif;
-
-#####################################################
-# No Add Viper4Arise
-
-if
-file_getprop("/tmp/aroma/add1.prop","selected.1") == "2"
-then
-ui_print("  ");
-ui_print("-- Viper4Arise Installation is being skipped");
-ui_print("  ");
-endif;
-
-
-#####################################################
-set_progress(0.75);
+delete_recursive("/system/priv-app/AudioFX");
 ui_print("########################################");
-#####################################################
+endif;
+
+set_progress(0.40);
+#-------------------------------------------------------------------
 # Add Pixel Launcher 
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.2") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
 ui_print("  ");
 package_extract_dir("palm/google/launcher", "/system/priv-app/NexusLauncher");
 package_extract_dir("palm/google/wallpaper", "/system/priv-app/Wallpaper");
-ui_print("-- Pixel Launcher installed successfully");
-ui_print("  ");
+ui_print("########################################");
 endif;
 
-#####################################################
-# No Add Launcher
+set_progress(0.45);
+#-------------------------------------------------------------------
+# Add Lawnchair Launcher 
 
 if
-file_getprop("/tmp/aroma/add1.prop","selected.2") == "2"
+file_getprop("/tmp/aroma/add1.prop","item.1.3") == "1"
 then
 ui_print("  ");
-ui_print("-- Launcher Installation is being skipped");
+ui_print("-- Installing Lawnchair Launcher");
 ui_print("  ");
+package_extract_dir("palm/lawnchair", "/system/priv-app/Lawnchair");
+ui_print("########################################");
 endif;
 
-
-#####################################################
-set_progress(0.80);
-ui_print("########################################");
-#####################################################
-# Add Ad-free Youtube 
+set_progress(0.50);
+#-------------------------------------------------------------------
+# Add Google Camera
 
 if
-file_getprop("/tmp/aroma/magisk.prop","selected.1") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.4") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Camera...");
+ui_print("  ");
+package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+ui_print("########################################");
+endif;
+
+set_progress(0.55);
+#-------------------------------------------------------------------
+# Add Substratum
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Substratum Theme Engine...");
+ui_print("  ");
+package_extract_dir("palm/substratum", "/system/priv-app/Substratum");
+ui_print("########################################");
+endif;
+
+set_progress(0.60);
+#-------------------------------------------------------------------
+# Add Ad-Away
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Ad-Away...");
+ui_print("  ");
+package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
+ui_print("########################################");
+endif;
+
+set_progress(0.65);
+#-------------------------------------------------------------------
+# Add Mixplorer
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Mixplorer...");
+ui_print("  ");
+package_extract_dir("palm/mixplorer", "/system/priv-app/Mixplorer");
+ui_print("########################################");
+endif;
+
+set_progress(0.70);
+#-------------------------------------------------------------------
+# Add Xposed
+
+if
+file_getprop("/tmp/aroma/magisk.prop","item.1.1") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Xposed...");
+ui_print("  ");
+package_extract_dir("palm/xposed/apk", "/system/priv-app/Xposed");
+package_extract_dir("palm/xposed/install", "/tmp/xposed");
+run_program("/sbin/busybox", "unzip", "/tmp/xposed/xposed.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/xposed");
+run_program("/sbin/busybox", "sh", "/tmp/xposed/META-INF/com/google/android/update-binary", "null", "1", "/tmp/xposed/xposed.zip");
+delete_recursive("/tmp/xposed");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+set_progress(0.75);
+#-------------------------------------------------------------------
+# Add Ad-Free Youtube 4K
+
+if
+file_getprop("/tmp/aroma/magisk.prop","item.1.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Ad-free Youtube for Magisk...");
@@ -531,146 +588,81 @@ delete_recursive("/tmp/iytbp");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
-ui_print("-- Ad-Free Youtube installed successfully");
-ui_print("  ");
+ui_print("########################################");
 endif;
 
-
-#####################################################
-# No Add Ad-Free Youtube 4K
+set_progress(0.80);
+#-------------------------------------------------------------------
+# Add iOS11 Emojis
 
 if
-file_getprop("/tmp/aroma/magisk.prop","selected.1") == "2"
+file_getprop("/tmp/aroma/magisk.prop","item.1.3") == "1"
 then
 ui_print("  ");
-ui_print("-- YouTube Installation is being skipped");
+ui_print("-- Installing iOS11 Emojis...");
 ui_print("  ");
+run_program("/sbin/busybox", "mount", "/data");
+package_extract_dir("palm/iosemojis", "/tmp/iosemojis");
+run_program("/sbin/busybox", "unzip", "/tmp/iosemojis/iosemojis.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/iosemojis");
+run_program("/sbin/busybox", "sh", "/tmp/iosemojis/META-INF/com/google/android/update-binary", "null", "1", "/tmp/iosemojis/iosemojis.zip");
+delete_recursive("/tmp/iosemojis");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("########################################");
 endif;
 
-
-#####################################################
 set_progress(0.85);
-ui_print("#######################################");
-#####################################################
-# Add Mixplorer
+#-------------------------------------------------------------------
+# Add Google Dialer
 
 if
-file_getprop("/tmp/aroma/add2.prop","selected.1") == "1"
+file_getprop("/tmp/aroma/magisk.prop","item.1.4") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing Mixplorer...");
+ui_print("-- Installing Google Dialer...");
 ui_print("  ");
-package_extract_dir("palm/mixplorer", "/system/priv-app/Mixplorer");
-ui_print("-- Mixplorer installed successfully");
+package_extract_dir("palm/google/dialer", "/tmp/dialer");
+run_program("/sbin/busybox", "unzip", "/tmp/dialer/dialer.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/dialer");
+run_program("/sbin/busybox", "sh", "/tmp/dialer/META-INF/com/google/android/update-binary", "null", "1", "/tmp/dialer/dialer.zip");
+delete_recursive("/tmp/dialer");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+delete_recursive("/system/priv-app/Contacts");
+delete_recursive("/system/priv-app/Dialer");
 ui_print("  ");
-endif;
-
-
-#####################################################
-# No Add Mixplorer
-
-if
-file_getprop("/tmp/aroma/add2.prop","selected.1") == "2"
-then
-ui_print("  ");
-ui_print("-- Mixplorer Installation is being skipped");
-ui_print("  ");
-endif;
-
-
-#####################################################
-set_progress(0.88);
 ui_print("########################################");
-#####################################################
-# Add Google Camera
-
-if
-file_getprop("/tmp/aroma/add2.prop","selected.2") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Google Camera...");
-ui_print("  ");
-package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
-ui_print("-- Google Camera installed successfully");
-ui_print("  ");
 endif;
 
-
-#####################################################
-# No Add Google Camera
-
-if
-file_getprop("/tmp/aroma/add2.prop","selected.2") == "2"
-then
-ui_print("  ");
-ui_print("-- Google Camera Installation is being skipped");
-ui_print("  ");
-endif;
-
-
-#####################################################
-set_progress(0.92);
-ui_print("########################################");
-#####################################################
+set_progress(0.90);
+#-------------------------------------------------------------------
 # Remove Jelly Browser
 
 if
-file_getprop("/tmp/aroma/remove.prop","selected.1") == "1"
+file_getprop("/tmp/aroma/remove.prop","item.1.1") == "1"
 then
 ui_print("  ");
 ui_print("-- Removing Jelly Browser...");
 ui_print("  ");
 delete_recursive("/system/app/Jelly");
-ui_print("-- Jelly Browser removed successfully");
-ui_print("  ");
-endif;
-
-
-#####################################################
-# No Remove Jelly Browser
-
-if
-file_getprop("/tmp/aroma/remove.prop","selected.1") == "2"
-then
-ui_print("  ");
-ui_print("-- Remove Jelly Browser is being skipped");
-ui_print("  ");
-endif;
-
-
-#####################################################
-set_progress(0.96);
 ui_print("########################################");
-#####################################################
+endif;
+
+set_progress(0.95);
+#-------------------------------------------------------------------
 # Remove Eleven Player
 
 if
-file_getprop("/tmp/aroma/remove.prop","selected.2") == "1"
+file_getprop("/tmp/aroma/remove.prop","item.1.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Removing Eleven Player...");
 ui_print("  ");
 delete_recursive("/system/priv-app/Eleven");
-ui_print("-- Eleven Player removed successfully");
-ui_print("  ");
-endif;
-
-
-#####################################################
-# No Remove Eleven Player
-
-if
-file_getprop("/tmp/aroma/remove.prop","selected.2") == "2"
-then
-ui_print("  ");
-ui_print("-- Remove Eleven Player is being skipped");
-ui_print("  ");
-endif;
-
-
-#####################################################
 ui_print("########################################");
-#####################################################
+endif;
+
+#-------------------------------------------------------------------
 
 ui_print("  ");
 ui_print("-- Unmounting /system");
