@@ -88,8 +88,8 @@ checkbox(
     "Add Substratum Theme Engine",          ""                                                 ,0,    #-- selected.1 = 5
     "Add Ad-Away",                          ""                                                 ,0,    #-- selected.1 = 6
     "Add Mixplorer",                        "v6.20.4.. Root Explorer"                          ,0,    #-- selected.1 = 7
-    "Add SamsungOne Font",                  ""                                                 ,0     #-- selected.1 = 8
-
+    "Add SamsungOne Font",                  ""                                                 ,0,    #-- selected.1 = 8
+    "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 9
 
 );
 
@@ -103,8 +103,8 @@ checkbox(
     "SELECT MAGISK MODULES TO ADD",         ""                                                 ,2,    #-- Group 1. key = "selected.1"
     "Add Ad-Free YouTube 4K",               ""                                                 ,0,    #-- selected.1 = 1
     "Add iOS11 Emojis",                     ""                                                 ,0,    #-- selected.1 = 2
-    "Enable HEVC/H.265 Video Recording",    ""                                                 ,0,    #-- selected.1 = 3
-    "Update Google Dialer/Contacts",        "Don't Forget to Change App Permissions and set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 4
+    "Enable HEVC/H.265 Video Recording",    ""                                                 ,0     #-- selected.1 = 3
+
 
 
 );

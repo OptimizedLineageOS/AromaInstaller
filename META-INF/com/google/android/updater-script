@@ -563,7 +563,25 @@ package_extract_dir("palm/samsungone", "/system/fonts");
 ui_print("########################################");
 endif;
 
+
 set_progress(0.75);
+#-------------------------------------------------------------------
+# Update Google Dialer/Contacts/Messages
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
+then
+ui_print("  ");
+ui_print("-- Updating Google Dialer/Contacts/Messages...");
+package_extract_dir("palm/google/dialer/system", "/system");
+delete_recursive("/system/priv-app/Contacts");
+delete_recursive("/system/priv-app/Dialer");
+delete_recursive("/system/app/messaging");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+set_progress(0.80);
 #-------------------------------------------------------------------
 # Add Ad-Free Youtube 4K
 
@@ -587,7 +605,7 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.80);
+set_progress(0.83);
 #-------------------------------------------------------------------
 # Add iOS11 Emojis
 
@@ -608,7 +626,7 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.83);
+set_progress(0.87);
 #-------------------------------------------------------------------
 # Add HEVC
 
@@ -628,31 +646,7 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.87);
-
-#-------------------------------------------------------------------
-# Update Google Dialer/Contacts
-
-if
-file_getprop("/tmp/aroma/magisk.prop","item.1.4") == "1"
-then
-ui_print("  ");
-ui_print("-- Updating Google Dialer/Contacts [Magisk Module]...");
-ui_print("  ");
-package_extract_dir("palm/google/dialer", "/tmp/dialer");
-run_program("/sbin/busybox", "unzip", "/tmp/dialer/dialer.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/dialer");
-run_program("/sbin/busybox", "sh", "/tmp/dialer/META-INF/com/google/android/update-binary", "null", "1", "/tmp/dialer/dialer.zip");
-delete_recursive("/tmp/dialer");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-delete_recursive("/system/priv-app/Contacts");
-delete_recursive("/system/priv-app/Dialer");
-ui_print("  ");
-ui_print("########################################");
-endif;
-
 set_progress(0.90);
-
 #-------------------------------------------------------------------
 # Remove Jelly Browser
 
