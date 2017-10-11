@@ -1,7 +1,7 @@
 
 <b><u>Changes since beta-1.0 build</u></b>
 = Update stock kernel 
-= Upstream merge and Octomber security patch
+= Upstream merge and October security patch
 = Enable night display
 = Allow sRGB enable/disable from Display settings
 = SystemUI:Set recents taskbar delay to 0 
