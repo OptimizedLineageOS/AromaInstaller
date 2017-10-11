@@ -1,12 +1,20 @@
 
-<b><u>Changes since beta-1.0 build</u></b>
+<b><u>Changes since Beta-1.0 build:</u></b>
 = Update stock kernel 
 = Upstream merge and October security patch
 = Enable night display
 = Allow sRGB enable/disable from Display settings
 = SystemUI:Set recents taskbar delay to 0 
 = Update wallpaper for PalmProject 2.0
-= Major aroma UI updates
 = Change the fab color
-
--------------------------------------------------
+= Major Aroma UI Updates:
+        New Aroma Layout
+        Add Lawnchair Alpha
+        Add Ad-Away
+        Add iOS Emojis
+        Add Substratum
+        Add Updated Google Dialer/Contacts/Messages
+        Add SamsungOne Font
+        Add HEVC/H.265 Video Recording
+	
+---------------------------------------------------------
