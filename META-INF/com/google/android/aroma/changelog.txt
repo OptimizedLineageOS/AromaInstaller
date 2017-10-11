@@ -1,6 +1,12 @@
 
-<b><u>BETA-FINAL</u></b>
-= BETA Testing
-= Initial Release
+<b><u>Changes since beta-1.0 build</u></b>
+= Update stock kernel 
+= Upstream merge and Octomber security patch
+= Enable night display
+= Allow sRGB enable/disable from Display settings
+= SystemUI:Set recents taskbar delay to 0 
+= Update wallpaper for PalmProject 2.0
+= Major aroma UI updates
+= Change the fab color
 
 -------------------------------------------------
