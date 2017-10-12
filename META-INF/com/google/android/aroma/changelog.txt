@@ -6,7 +6,7 @@
 = Allow sRGB enable/disable from Display settings
 = SystemUI:Set recents taskbar delay to 0 
 = Update wallpaper for PalmProject 2.0
-= Added 4G/LTE slider in Tweaks
+= Added 4G/LTE switch in Tweaks
 = Change the fab color
 = Major Aroma UI Updates:
         New Aroma Layout
