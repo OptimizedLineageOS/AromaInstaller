@@ -326,10 +326,35 @@ ui_print("  ");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
+ui_print("----------------------------------------");
+ui_print("  ");
+ui_print("-- Installing Magisk binaries...");
+ui_print("  ");
+package_extract_dir("palm/magisk", "/tmp/magisk");
+run_program("/sbin/busybox", "unzip", "/tmp/magisk/magisk.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/magisk");
+run_program("/sbin/busybox", "sh", "/tmp/magisk/META-INF/com/google/android/update-binary", "null", "1", "/tmp/magisk/magisk.zip");
+delete_recursive("/tmp/magisk");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Magisk installed successfully");
+ui_print("  ");
+ui_print("----------------------------------------");
+ui_print("  ");
+ui_print("-- Installing Snapchat/Camera Fixes...");
+ui_print("  ");
+package_extract_dir("palm/snapchat-fix", "/tmp/snapchat-fix");
+run_program("/sbin/busybox", "unzip", "/tmp/snapchat-fix/snapchat-fix.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/snapchat-fix");
+run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/android/update-binary", "null", "1", "/tmp/snapchat-fix/snapchat-fix.zip");
+delete_recursive("/tmp/snapchat-fix");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Snapchat/Camera Fixes installed successfull");
+ui_print("  ");
 ui_print("-- PALM PROJECT installed successfully");
 ui_print("  ");
 endif;
-
 
 #####################################################
 # No ROM INSTALL
@@ -344,7 +369,6 @@ ui_print("  ");
 ui_print("-- Palm Project Installation is being skipped");
 ui_print("  ");
 endif;
-
 
 #####################################################
 set_progress(0.25);
@@ -369,7 +393,6 @@ ui_print("  ");
 ui_print("-- Boeffla-Config App installed successfully");
 ui_print("  ");
 endif;
-
 
 #####################################################
 # No KERNEL INSTALL or STOCK KERNEL
@@ -421,42 +444,6 @@ set_progress(0.33);
 ui_print("########################################");
 
 #-------------------------------------------------------------------
-# Add Magisk
-
-if
-file_getprop("/tmp/aroma/rom.prop","selected.4") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Magisk binaries...");
-ui_print("  ");
-package_extract_dir("palm/magisk", "/tmp/magisk");
-run_program("/sbin/busybox", "unzip", "/tmp/magisk/magisk.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/magisk");
-run_program("/sbin/busybox", "sh", "/tmp/magisk/META-INF/com/google/android/update-binary", "null", "1", "/tmp/magisk/magisk.zip");
-delete_recursive("/tmp/magisk");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("-- Magisk installed successfully");
-ui_print("  ");
-ui_print("----------------------------------------");
-ui_print("  ");
-ui_print("-- Installing Snapchat/Camera Fixes...");
-ui_print("  ");
-package_extract_dir("palm/snapchat-fix", "/tmp/snapchat-fix");
-run_program("/sbin/busybox", "unzip", "/tmp/snapchat-fix/snapchat-fix.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/snapchat-fix");
-run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/android/update-binary", "null", "1", "/tmp/snapchat-fix/snapchat-fix.zip");
-delete_recursive("/tmp/snapchat-fix");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("-- Snapchat/Camera Fixes installed successfull");
-ui_print("  ");
-endif;
-
-set_progress(0.37);
-ui_print("########################################");
-
-#-------------------------------------------------------------------
 # Add Viper4Arise
 
 if
@@ -487,7 +474,7 @@ ui_print("  ");
 ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
 ui_print("  ");
 package_extract_dir("palm/google/launcher", "/system/priv-app/NexusLauncher");
-package_extract_dir("palm/google/wallpaper", "/system/priv-app");
+package_extract_dir("palm/google/wallpaper", "/system/priv-app/Wallpaper");
 ui_print("########################################");
 endif;
 
