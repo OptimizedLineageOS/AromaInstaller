@@ -325,9 +325,6 @@ ui_print("-- boot.img installed successfully");
 ui_print("  ");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
-
-ui_print("----------------------------------------");
-
 ui_print("  ");
 ui_print("-- PALM PROJECT installed successfully");
 ui_print("  ");
@@ -451,6 +448,7 @@ run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/androi
 delete_recursive("/tmp/snapchat-fix");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
 ui_print("-- Snapchat/Camera Fixes installed successfull");
 ui_print("  ");
 endif;
