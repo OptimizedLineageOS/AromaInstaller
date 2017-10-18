@@ -475,7 +475,7 @@ ui_print("  ");
 ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
 ui_print("  ");
 package_extract_dir("palm/google/launcher", "/system/priv-app/NexusLauncher");
-package_extract_dir("palm/google/wallpaper", "/system/priv-app/Wallpaper");
+package_extract_dir("palm/google/wallpaper", "/system/priv-app");
 ui_print("########################################");
 endif;
 
