@@ -58,17 +58,17 @@ selectbox(
       "@default",
       "rom.prop",
 
-    "Rom Corner",                           ""                                                 ,2,   #-- Group 1. key = "selected.1"
-    "Install Rom with Stock Kernel and Magisk",      "Android 7.1.2"                           ,1,   #-- selected.1 = 1
-    "No Changes",                           ""                                                 ,0,   #-- selected.1 = 2
+    "Rom Corner",                                  ""                                                         ,2,   #-- Group 1. key = "selected.1"
+    "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2"                                            ,1,   #-- selected.1 = 1
+    "No Changes",                                  ""                                                         ,0,   #-- selected.1 = 2
 
-    "Kernel Corner",                        ""                                                 ,2,   #-- Group 2. key = "selected.2"
-    "Add Boeffla Kernel",    "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"     ,1,   #-- selected.2 = 1
-    "No Changes",                           ""                                                 ,0,   #-- selected.2 = 2
+    "Kernel Corner",                               ""                                                         ,2,   #-- Group 2. key = "selected.2"
+    "<b>ADD</b> Boeffla Kernel",      "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"           ,1,   #-- selected.2 = 1
+    "No Changes",                                  "Default Rom Kernel will still be installed"               ,0,   #-- selected.2 = 2
 
-    "No-Verity Corner",                     ""                                                 ,2,   #-- Group 3. key = "selected.3"
-    "Install No-Verity",                    "Removes Device-Mapper-Verity"                     ,1,   #-- selected.3 = 1
-    "No Changes",                           ""                                                 ,0    #-- selected.3 = 2
+    "No-Verity Corner",                            ""                                                         ,2,   #-- Group 3. key = "selected.3"
+    "Install No-Verity",                           "Removes Device-Mapper-Verity"                             ,1,   #-- selected.3 = 1
+    "No Changes",                                  ""                                                         ,0    #-- selected.3 = 2
 );
 
 
@@ -78,15 +78,15 @@ checkbox(
       "@default",
       "add1.prop",
 
-    "SELECT ITEMS TO ADD",                  ""                                                 ,2,    #-- Group 1. key = "selected.1"
-    "Add Viper4Arise",                      "Magnum+Opus"                                      ,0,    #-- selected.1 = 1
-    "Add Pixel Launcher",                   ""                                                 ,0,    #-- selected.1 = 2
-    "Add Lawnchair Launcher",               ""                                                 ,0,    #-- selected.1 = 3
-    "Add Google Camera",                    ""                                                 ,0,    #-- selected.1 = 4
-    "Add Substratum Theme Engine",          ""                                                 ,0,    #-- selected.1 = 5
-    "Add Ad-Away",                          ""                                                 ,0,    #-- selected.1 = 6
-    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                          ,0,    #-- selected.1 = 7
-    "Add SamsungOne Font",                  ""                                                 ,0,    #-- selected.1 = 8
+    "SELECT ITEMS TO ADD",                  ""                                                    ,2,    #-- Group 1. key = "selected.1"
+    "Add Viper4Arise",                      "Magnum+Opus"                                         ,0,    #-- selected.1 = 1
+    "Add Pixel Launcher",                   ""                                                    ,0,    #-- selected.1 = 2
+    "Add Lawnchair Launcher",               ""                                                    ,0,    #-- selected.1 = 3
+    "Add Google Camera",                    "HDR+/Lens Blur/Slow Motion Capture/4K Recordings"    ,0,    #-- selected.1 = 4
+    "Add Substratum Theme Engine",          ""                                                    ,0,    #-- selected.1 = 5
+    "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 6
+    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 7
+    "Add SamsungOne Font",                  ""                                                    ,0,    #-- selected.1 = 8
     "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 9
 );
 
@@ -97,10 +97,11 @@ checkbox(
       "@default",
       "magisk.prop",
 
-    "SELECT MAGISK MODULES TO ADD",         ""                                                 ,2,    #-- Group 1. key = "selected.1"
-    "Add Ad-Free YouTube 4K",               ""                                                 ,0,    #-- selected.1 = 1
-    "Add iOS11 Emojis",                     ""                                                 ,0,    #-- selected.1 = 2
-    "Enable HEVC/H.265 Video Recording",    ""                                                 ,0     #-- selected.1 = 3
+    "SELECT MAGISK MODULES TO ADD",            ""                                                       ,2,    #-- Group 1. key = "selected.1"
+    "Add Snapchat-Fix/OOSCam Portrait Mode",   "Will make OOS Camera Unstable (May Cause App Closes"    ,0,    #-- selected.1 = 1
+    "Add Ad-Free YouTube 4K",                  ""                                                       ,0,    #-- selected.1 = 2
+    "Add iOS11 Themed Emojis",                 "Change system emojis to a higher detail"                ,0,    #-- selected.1 = 3
+    "Enable HEVC/H.265 Video Recording",       ""                                                       ,0     #-- selected.1 = 4
 );
 
 
