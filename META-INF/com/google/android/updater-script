@@ -517,7 +517,7 @@ package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
 ui_print("########################################");
 endif;
 
-set_progress(0.75);
+set_progress(0.74);
 #-------------------------------------------------------------------
 # Add Mixplorer
 
@@ -531,7 +531,7 @@ package_extract_dir("palm/mixplorer", "/system/priv-app/Mixplorer");
 ui_print("########################################");
 endif;
 
-set_progress(0.78);
+set_progress(0.76);
 #-------------------------------------------------------------------
 # Add SamsungOne Font
 
@@ -545,12 +545,26 @@ package_extract_dir("palm/samsungone", "/system/fonts");
 ui_print("########################################");
 endif;
 
+set_progress(0.78);
+#-------------------------------------------------------------------
+# Add OP File Manager
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing OnePlus File Manager...");
+ui_print("  ");
+package_extract_dir("palm/opfilemanager", "/system/priv-app/OPFileManager");
+ui_print("########################################");
+endif;
+
 set_progress(0.80);
 #-------------------------------------------------------------------
 # Update Google Dialer/Contacts/Messages
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.10") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");
