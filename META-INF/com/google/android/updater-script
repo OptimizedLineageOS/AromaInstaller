@@ -475,7 +475,7 @@ package_extract_dir("palm/lawnchair", "/system/priv-app/Lawnchair");
 ui_print("########################################");
 endif;
 
-set_progress(0.66);
+set_progress(0.67);
 #-------------------------------------------------------------------
 # Add Google Camera
 
@@ -489,12 +489,26 @@ package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
 ui_print("########################################");
 endif;
 
-set_progress(0.69);
+set_progress(0.70);
+#-------------------------------------------------------------------
+# Add Google Lens
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Lens...");
+ui_print("  ");
+package_extract_dir("palm/google/lens/system", "/system");
+ui_print("########################################");
+endif;
+
+set_progress(0.72);
 #-------------------------------------------------------------------
 # Add Substratum
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Substratum Theme Engine...");
@@ -503,12 +517,12 @@ package_extract_dir("palm/substratum", "/system/priv-app");
 ui_print("########################################");
 endif;
 
-set_progress(0.72);
+set_progress(0.74);
 #-------------------------------------------------------------------
 # Add Ad-Away
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Ad-Away...");
@@ -517,12 +531,12 @@ package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
 ui_print("########################################");
 endif;
 
-set_progress(0.75);
+set_progress(0.76);
 #-------------------------------------------------------------------
 # Add Mixplorer
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Mixplorer...");
@@ -536,7 +550,7 @@ set_progress(0.78);
 # Add SamsungOne Font
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing SamsungOne Font...");
@@ -550,7 +564,7 @@ set_progress(0.80);
 # Update Google Dialer/Contacts/Messages
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.10") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");

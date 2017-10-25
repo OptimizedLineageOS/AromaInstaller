@@ -83,11 +83,12 @@ checkbox(
     "Add Pixel Launcher",                   ""                                                    ,0,    #-- selected.1 = 2
     "Add Lawnchair Launcher",               ""                                                    ,0,    #-- selected.1 = 3
     "Add Google Camera",                    "HDR+/Lens Blur/Slow Motion Capture/4K Recordings"    ,0,    #-- selected.1 = 4
-    "Add Substratum Theme Engine",          ""                                                    ,0,    #-- selected.1 = 5
-    "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 6
-    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 7
-    "Add SamsungOne Font",                  ""                                                    ,0,    #-- selected.1 = 8
-    "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 9
+    "Add Google Lens",                      "Use Google Photos to search for info on photos"      ,0,    #-- selected.1 = 5
+    "Add Substratum Theme Engine",          ""                                                    ,0,    #-- selected.1 = 6
+    "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 7
+    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 8
+    "Add SamsungOne Font",                  ""                                                    ,0,    #-- selected.1 = 9
+    "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 10
 );
 
 
