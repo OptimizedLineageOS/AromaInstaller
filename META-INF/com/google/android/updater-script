@@ -559,7 +559,7 @@ package_extract_dir("palm/samsungone", "/system/fonts");
 ui_print("########################################");
 endif;
 
-set_progress(0.80);
+set_progress(0.81);
 #-------------------------------------------------------------------
 # Update Google Dialer/Contacts/Messages
 
@@ -576,32 +576,12 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.82);
-#-------------------------------------------------------------------
-# Add Snapchat Fix/OOSCam Portrait Mode
-
-if
-file_getprop("/tmp/aroma/magisk.prop","item.1.1") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Snapchat Fix/OOSCam Portrait Mode...");
-ui_print("  ");
-package_extract_dir("palm/snapchat-fix", "/tmp/snapchat-fix");
-run_program("/sbin/busybox", "unzip", "/tmp/snapchat-fix/snapchat-fix.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/snapchat-fix");
-run_program("/sbin/busybox", "sh", "/tmp/snapchat-fix/META-INF/com/google/android/update-binary", "null", "1", "/tmp/snapchat-fix/snapchat-fix.zip");
-delete_recursive("/tmp/snapchat-fix");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
-ui_print("########################################");
-endif;
-
-set_progress(0.84);
+set_progress(0.83);
 #-------------------------------------------------------------------
 # Add Ad-Free Youtube 4K
 
 if
-file_getprop("/tmp/aroma/magisk.prop","item.1.2") == "1"
+file_getprop("/tmp/aroma/magisk.prop","item.1.1") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Ad-Free Youtube 4K [Magisk Module]...");
@@ -620,12 +600,12 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.83);
+set_progress(0.85);
 #-------------------------------------------------------------------
 # Add iOS11 Emojis
 
 if
-file_getprop("/tmp/aroma/magisk.prop","item.1.3") == "1"
+file_getprop("/tmp/aroma/magisk.prop","item.1.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing iOS11 Emojis [Magisk Module]...");
@@ -641,12 +621,12 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.87);
+set_progress(0.88);
 #-------------------------------------------------------------------
 # Add HEVC
 
 if
-file_getprop("/tmp/aroma/magisk.prop","item.1.4") == "1"
+file_getprop("/tmp/aroma/magisk.prop","item.1.3") == "1"
 then
 ui_print("  ");
 ui_print("-- Enabling HEVC/H.265 Video Recording [Magisk Module]...");
@@ -675,7 +655,7 @@ delete_recursive("/system/app/Jelly");
 ui_print("########################################");
 endif;
 
-set_progress(0.95);
+set_progress(0.93);
 #-------------------------------------------------------------------
 # Remove Eleven Player
 
@@ -686,6 +666,21 @@ ui_print("  ");
 ui_print("-- Removing Eleven Player...");
 ui_print("  ");
 delete_recursive("/system/priv-app/Eleven");
+ui_print("########################################");
+endif;
+
+set_progress(0.96);
+#-------------------------------------------------------------------
+# Remove OnePlus Camera
+
+if
+file_getprop("/tmp/aroma/remove.prop","item.1.3") == "1"
+then
+ui_print("  ");
+ui_print("-- Removing OnePlus Camera...");
+ui_print("  ");
+delete_recursive("/system/priv-app/OnePlusCamera");
+delete_recursive("/system/priv-app/OnePlusCameraService");
 ui_print("########################################");
 endif;
 
