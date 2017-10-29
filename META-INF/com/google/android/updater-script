@@ -319,6 +319,7 @@ ui_print("-- Installing boot.img...");
 ui_print("  ");
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
 ui_print("-- boot.img installed successfully");
+package_extract_dir("palm/buttonsremapper", "/system/priv-app/ButtonsRemapper");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
@@ -533,10 +534,24 @@ endif;
 
 set_progress(0.76);
 #-------------------------------------------------------------------
-# Add Mixplorer
+# Add Google Live Wallpapers
 
 if
 file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Live Wallpapers...");
+ui_print("  ");
+package_extract_dir("palm/wallpapers", "/system/priv-app");
+ui_print("########################################");
+endif;
+
+set_progress(0.76);
+#-------------------------------------------------------------------
+# Add Mixplorer
+
+if
+file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Mixplorer...");
@@ -550,7 +565,7 @@ set_progress(0.78);
 # Add SamsungOne Font
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.9") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.10") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing SamsungOne Font...");
@@ -564,7 +579,7 @@ set_progress(0.81);
 # Update Google Dialer/Contacts/Messages
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.10") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.11") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");
