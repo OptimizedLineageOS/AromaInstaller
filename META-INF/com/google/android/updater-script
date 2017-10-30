@@ -320,6 +320,8 @@ ui_print("  ");
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
 ui_print("-- boot.img installed successfully");
 package_extract_dir("palm/buttonsremapper", "/system/priv-app/ButtonsRemapper");
+package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+delete_recursive("/system/priv-app/OnePlusCamera");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("  ");
@@ -478,15 +480,33 @@ endif;
 
 set_progress(0.67);
 #-------------------------------------------------------------------
-# Add Google Camera
+# Add OOS Camera
 
 if
 file_getprop("/tmp/aroma/add1.prop","item.1.4") == "1"
 then
 ui_print("  ");
-ui_print("-- Installing Google Camera...");
+ui_print("-- Installing OOS Camera...");
 ui_print("  ");
-package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
+ui_print("Flashing firmware...");
+package_extract_file("palm/RADIO/static_nvbk.bin", "/dev/block/bootdevice/by-name/oem_stanvbk");
+package_extract_file("palm/firmware-update/cmnlib64.mbn", "/dev/block/bootdevice/by-name/cmnlib64");
+package_extract_file("palm/firmware-update/cmnlib.mbn", "/dev/block/bootdevice/by-name/cmnlib");
+package_extract_file("palm/firmware-update/hyp.mbn", "/dev/block/bootdevice/by-name/hyp");
+package_extract_file("palm/firmware-update/pmic.elf", "/dev/block/bootdevice/by-name/pmic");
+package_extract_file("palm/firmware-update/tz.mbn", "/dev/block/bootdevice/by-name/tz");
+package_extract_file("palm/firmware-update/abl.elf", "/dev/block/bootdevice/by-name/abl");
+package_extract_file("palm/firmware-update/devcfg.mbn", "/dev/block/bootdevice/by-name/devcfg");
+package_extract_file("palm/firmware-update/keymaster.mbn", "/dev/block/bootdevice/by-name/keymaster");
+package_extract_file("palm/firmware-update/xbl.elf", "/dev/block/bootdevice/by-name/xbl");
+package_extract_file("palm/firmware-update/rpm.mbn", "/dev/block/bootdevice/by-name/rpm");
+package_extract_file("palm/firmware-update/logo.bin", "/dev/block/bootdevice/by-name/LOGO");
+package_extract_file("palm/firmware-update/NON-HLOS.bin", "/dev/block/bootdevice/by-name/modem");
+package_extract_file("palm/firmware-update/adspso.bin", "/dev/block/bootdevice/by-name/dsp");
+package_extract_file("palm/firmware-update/BTFM.bin", "/dev/block/bootdevice/by-name/bluetooth");
+ui_print("Firmware successfully flashed.");
+ui_print("  ");
 ui_print("########################################");
 endif;
 
@@ -686,16 +706,15 @@ endif;
 
 set_progress(0.96);
 #-------------------------------------------------------------------
-# Remove OnePlus Camera
+# Remove Google Camera
 
 if
 file_getprop("/tmp/aroma/remove.prop","item.1.3") == "1"
 then
 ui_print("  ");
-ui_print("-- Removing OnePlus Camera...");
+ui_print("-- Removing Google Camera...");
 ui_print("  ");
-delete_recursive("/system/priv-app/OnePlusCamera");
-delete_recursive("/system/priv-app/OnePlusCameraService");
+delete_recursive("/system/priv-app/GoogleCamera");
 ui_print("########################################");
 endif;
 

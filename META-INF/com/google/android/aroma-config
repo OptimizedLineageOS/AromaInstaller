@@ -82,7 +82,7 @@ checkbox(
     "Add Viper4Arise",                      "Magnum+Opus"                                         ,0,    #-- selected.1 = 1
     "Add Pixel Launcher",                   ""                                                    ,0,    #-- selected.1 = 2
     "Add Lawnchair Launcher",               ""                                                    ,0,    #-- selected.1 = 3
-    "Add Google Camera",                    "HDR+/Lens Blur/Slow Motion Capture/4K Recordings"    ,0,    #-- selected.1 = 4
+    "Add OOS Camera w/Portrait Mode",       "note: forced firmware to 4.5.10 will be included"    ,0,    #-- selected.1 = 4
     "Add Google Lens",                      "Use Google Photos to search for info on photos"      ,0,    #-- selected.1 = 5
     "Add Substratum Theme Engine",          "includes BalticUI Theme"                             ,0,    #-- selected.1 = 6
     "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 7
@@ -115,7 +115,7 @@ checkbox(
     "SELECT ITEMS TO REMOVE",               ""                                                 ,2,    #-- Group 1. key = "selected.1"
     "Remove Jelly Browser",                 ""                                                 ,0,    #-- selected.1 = 1
     "Remove Eleven Player",                 ""                                                 ,0,    #-- selected.1 = 2
-	"Remove OnePlus Camera",                ""                                                 ,0     #-- selected.1 = 3
+	"Remove Google Camera",                 ""                                                 ,0     #-- selected.1 = 3
 );
 
 
