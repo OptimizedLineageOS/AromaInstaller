@@ -322,9 +322,9 @@ ui_print("-- Installing boot.img...");
 ui_print("  ");
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
 ui_print("-- boot.img installed successfully");
+ui_print("  ");
+ui_print("-- Installing System Add-ons...");
 package_extract_dir("palm/buttonsremapper", "/system/priv-app/ButtonsRemapper");
-package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
-delete_recursive("/system/priv-app/OnePlusCamera");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 set_progress(0.40);
@@ -484,24 +484,10 @@ endif;
 
 set_progress(0.60);
 #-------------------------------------------------------------------
-# Add OOS Camera
-
-if
-file_getprop("/tmp/aroma/add1.prop","item.1.4") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing OOS Camera...");
-ui_print("  ");
-package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
-ui_print("########################################");
-endif;
-
-set_progress(0.63);
-#-------------------------------------------------------------------
 # Add Substratum
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.4") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Substratum Theme Engine...");
@@ -510,12 +496,12 @@ package_extract_dir("palm/substratum", "/system/priv-app");
 ui_print("########################################");
 endif;
 
-set_progress(0.66);
+set_progress(0.63);
 #-------------------------------------------------------------------
 # Add Ad-Away
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Ad-Away...");
@@ -524,12 +510,12 @@ package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
 ui_print("########################################");
 endif;
 
-set_progress(0.69);
+set_progress(0.66);
 #-------------------------------------------------------------------
 # Add Mixplorer
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Mixplorer...");
@@ -538,12 +524,12 @@ package_extract_dir("palm/mixplorer", "/system/priv-app/Mixplorer");
 ui_print("########################################");
 endif;
 
-set_progress(0.72);
+set_progress(0.69);
 #-------------------------------------------------------------------
 # Add SamsungOne Font
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing SamsungOne Font...");
@@ -552,7 +538,7 @@ package_extract_dir("palm/samsungone", "/system/fonts");
 ui_print("########################################");
 endif;
 
-set_progress(0.75);
+set_progress(0.72);
 #-------------------------------------------------------------------
 # Add Google Lens
 
@@ -566,12 +552,26 @@ package_extract_dir("palm/google/lens/system", "/system");
 ui_print("########################################");
 endif;
 
+set_progress(0.75);
+#-------------------------------------------------------------------
+# Add Google Camera
+
+if
+file_getprop("/tmp/aroma/add2.prop","item.1.2") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Camera...");
+ui_print("  ");
+package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+ui_print("########################################");
+endif;
+
 set_progress(0.78);
 #-------------------------------------------------------------------
 # Add Google Live Wallpapers
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.2") == "1"
+file_getprop("/tmp/aroma/add2.prop","item.1.3") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Google Live Wallpapers...");
@@ -585,7 +585,7 @@ set_progress(0.81);
 # Update Google Dialer/Contacts/Messages
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.3") == "1"
+file_getprop("/tmp/aroma/add2.prop","item.1.4") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");
@@ -692,15 +692,16 @@ endif;
 
 set_progress(0.96);
 #-------------------------------------------------------------------
-# Remove Google Camera
+# Remove OnePlus Camera
 
 if
 file_getprop("/tmp/aroma/remove.prop","item.1.3") == "1"
 then
 ui_print("  ");
-ui_print("-- Removing Google Camera...");
+ui_print("-- Removing OnePlus Camera...");
 ui_print("  ");
-delete_recursive("/system/priv-app/GoogleCamera");
+delete_recursive("/system/priv-app/OnePlusCamera");
+delete_recursive("/system/priv-app/OnePlusCameraService");
 ui_print("########################################");
 endif;
 
