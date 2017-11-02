@@ -580,7 +580,7 @@ set_progress(0.77);
 # Add Google Live Wallpapers
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.3") == "1"
+file_getprop("/tmp/aroma/add2.prop","item.1.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Google Live Wallpapers...");
@@ -594,7 +594,7 @@ set_progress(0.81);
 # Update Google Dialer/Contacts/Messages
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.4") == "1"
+file_getprop("/tmp/aroma/add2.prop","item.1.3") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");
