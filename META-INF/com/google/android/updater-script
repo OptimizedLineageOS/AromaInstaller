@@ -325,6 +325,8 @@ ui_print("-- boot.img installed successfully");
 ui_print("  ");
 ui_print("-- Installing System Add-ons...");
 package_extract_dir("palm/buttonsremapper", "/system/priv-app/ButtonsRemapper");
+package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+delete_recursive("/system/priv-app/OnePlusCamera");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 set_progress(0.40);
@@ -385,10 +387,31 @@ ui_print("  ");
 endif;
 
 #####################################################
-# No KERNEL INSTALL or STOCK KERNEL
+# Add Lightning Kernel
 
 if
 file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
+then
+ui_print("  ");
+ui_print("-- Installing Lightning Kernel...");
+package_extract_dir("palm/lightning", "/tmp/lightning");
+run_program("/sbin/busybox", "unzip", "/tmp/lightning/lightning.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/lightning");
+run_program("/sbin/busybox", "sh", "/tmp/lightning/META-INF/com/google/android/update-binary", "null", "1", "/tmp/lightning/lightning.zip");
+delete_recursive("/tmp/lightning");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("-- Lightning Kernel installed successfully");
+ui_print("  ");
+ui_print("-- Installing OnePlus Camera...");
+package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
+ui_print("  ");
+endif;
+
+#####################################################
+# No KERNEL INSTALL or STOCK KERNEL
+
+if
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "3"
 then
 ui_print("  ");
 ui_print("-- Custom Kernel Installation is being skipped");
@@ -538,7 +561,7 @@ package_extract_dir("palm/samsungone", "/system/fonts");
 ui_print("########################################");
 endif;
 
-set_progress(0.72);
+set_progress(0.73);
 #-------------------------------------------------------------------
 # Add Google Lens
 
@@ -552,21 +575,7 @@ package_extract_dir("palm/google/lens/system", "/system");
 ui_print("########################################");
 endif;
 
-set_progress(0.75);
-#-------------------------------------------------------------------
-# Add Google Camera
-
-if
-file_getprop("/tmp/aroma/add2.prop","item.1.2") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Google Camera...");
-ui_print("  ");
-package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
-ui_print("########################################");
-endif;
-
-set_progress(0.78);
+set_progress(0.77);
 #-------------------------------------------------------------------
 # Add Google Live Wallpapers
 
@@ -692,16 +701,15 @@ endif;
 
 set_progress(0.96);
 #-------------------------------------------------------------------
-# Remove OnePlus Camera
+# Remove Google Camera
 
 if
 file_getprop("/tmp/aroma/remove.prop","item.1.3") == "1"
 then
 ui_print("  ");
-ui_print("-- Removing OnePlus Camera...");
+ui_print("-- Removing Google Camera...");
 ui_print("  ");
-delete_recursive("/system/priv-app/OnePlusCamera");
-delete_recursive("/system/priv-app/OnePlusCameraService");
+delete_recursive("/system/priv-app/GoogleCamera");
 ui_print("########################################");
 endif;
 

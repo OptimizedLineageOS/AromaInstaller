@@ -63,7 +63,8 @@ selectbox(
     "No Changes",                                  ""                                                         ,0,   #-- selected.1 = 2
 
     "Kernel Corner",                               ""                                                         ,2,   #-- Group 2. key = "selected.2"
-    "<b>ADD</b> Boeffla Kernel",      "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"           ,1,   #-- selected.2 = 1
+    "ADD Boeffla Kernel",             "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"           ,1,   #-- selected.2 = 1
+    "ADD Lightning Kernel",           "v13 - Must Choose This For OnePlus Camera To Be Added"                 ,0,   #-- selected.2 = 1	
     "No Changes",                                  "Default Rom Kernel will still be installed"               ,0,   #-- selected.2 = 2
 
     "No-Verity Corner",                            ""                                                         ,2,   #-- Group 3. key = "selected.3"
@@ -97,9 +98,8 @@ checkbox(
 
     "SELECT ITEMS TO ADD",                  ""                                                    ,2,    #-- Group 1. key = "selected.1"
     "Add Google Lens",                      "Use Google Photos to search for info on photos"      ,0,    #-- selected.1 = 1
-    "Add Google Camera",                    ""                                                    ,0,    #-- selected.1 = 2
-	"Add Google Live Wallpapers",           "includes Live Earth Wallpaper"                       ,0,    #-- selected.1 = 3
-    "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 4
+	"Add Google Live Wallpapers",           "includes Live Earth Wallpaper"                       ,0,    #-- selected.1 = 2
+    "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 3
 );
 
 
@@ -125,7 +125,7 @@ checkbox(
     "SELECT ITEMS TO REMOVE",               ""                                                 ,2,    #-- Group 1. key = "selected.1"
     "Remove Jelly Browser",                 ""                                                 ,0,    #-- selected.1 = 1
     "Remove Eleven Player",                 ""                                                 ,0,    #-- selected.1 = 2
-	"Remove OnePlus Camera",                ""                                                 ,0     #-- selected.1 = 3
+	"Remove Google Camera",                 ""                                                 ,0     #-- selected.1 = 3
 );
 
 
