@@ -366,31 +366,10 @@ endif;
 set_progress(0.45);
 ui_print("########################################");
 #####################################################
-# Add Boeffla Kernel
-
-if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Boeffla Kernel...");
-package_extract_dir("palm/boeffla/install", "/tmp/boeffla");
-run_program("/sbin/busybox", "unzip", "/tmp/boeffla/boeffla.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/boeffla");
-run_program("/sbin/busybox", "sh", "/tmp/boeffla/META-INF/com/google/android/update-binary", "null", "1", "/tmp/boeffla/boeffla.zip");
-delete_recursive("/tmp/boeffla");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("-- Boeffla Kernel installed successfully");
-package_extract_dir("palm/boeffla/apk", "/system/priv-app/Boeffla-Config");
-ui_print("  ");
-ui_print("-- Boeffla-Config App installed successfully");
-ui_print("  ");
-endif;
-
-#####################################################
 # Add Lightning Kernel
 
 if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Lightning Kernel...");
@@ -404,6 +383,27 @@ ui_print("-- Lightning Kernel installed successfully");
 ui_print("  ");
 ui_print("-- Installing OnePlus Camera...");
 package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
+ui_print("  ");
+endif;
+
+#####################################################
+# Add Boeffla Kernel
+
+if
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
+then
+ui_print("  ");
+ui_print("-- Installing Boeffla Kernel...");
+package_extract_dir("palm/boeffla/install", "/tmp/boeffla");
+run_program("/sbin/busybox", "unzip", "/tmp/boeffla/boeffla.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/boeffla");
+run_program("/sbin/busybox", "sh", "/tmp/boeffla/META-INF/com/google/android/update-binary", "null", "1", "/tmp/boeffla/boeffla.zip");
+delete_recursive("/tmp/boeffla");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("-- Boeffla Kernel installed successfully");
+package_extract_dir("palm/boeffla/apk", "/system/priv-app/Boeffla-Config");
+ui_print("  ");
+ui_print("-- Boeffla-Config App installed successfully");
 ui_print("  ");
 endif;
 
