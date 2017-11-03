@@ -9,6 +9,12 @@
 = Some minor camera edits
 = Grab the some OOS changes
 = Introduce Color Engine ( Display / Color Engine )  
+= Add powerhint.xml for power hal
+= Build LiveDisplay native interface 
+= Add dci-p3 sysfs node 
+= Add remapping table for display modes
+= Add qdcm configs
+= Update srgb sysfs node name to match livedisplay driver
 = Major Aroma UI Updates:
         Add Google Lens and Google Photos
 	Add Buttom Mapper as aroma package
