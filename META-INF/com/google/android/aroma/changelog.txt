@@ -15,6 +15,7 @@
 = Add remapping table for display modes
 = Add qdcm configs
 = Update srgb sysfs node name to match livedisplay driver
+= build: use optimal CPU configuration for ARMv8 CPUs
 = Major Aroma UI Updates:
         Add Google Lens and Google Photos
 	Add Buttom Mapper as aroma package
