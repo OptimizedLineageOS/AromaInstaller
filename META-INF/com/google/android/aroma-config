@@ -2,10 +2,10 @@
 ini_set("force_colorspace","rgba");
 
 ini_set("rom_name",             "Palm Project 14.1");
-ini_set("rom_version",          "2.0");
+ini_set("rom_version",          "3.0");
 ini_set("rom_author",           "Palm Project Team");
 ini_set("rom_device",           "OnePlus5");
-ini_set("rom_date",             "October 2017");
+ini_set("rom_date",             "November 2017");
 
 
 anisplash(
@@ -62,10 +62,10 @@ selectbox(
     "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2"                                            ,1,   #-- selected.1 = 1
     "No Changes",                                  ""                                                         ,0,   #-- selected.1 = 2
 
-    "Kernel Corner",                               ""                                                         ,2,   #-- Group 2. key = "selected.2"
-    "ADD Lightning Kernel",           "v13 - Must Choose This For OnePlus Camera To Be Added"                 ,1,   #-- selected.2 = 1	
-    "ADD Boeffla Kernel",             "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"           ,0,   #-- selected.2 = 2
-    "No Changes",                                  "Default Rom Kernel will still be installed"               ,0,   #-- selected.2 = 3
+    "Kernel Corner",                               ""                                                                      ,2,   #-- Group 2. key = "selected.2"
+    "ADD Lightning Kernel & OnePlus Camera",       "v13 - Must Choose This For OnePlus Camera To Be Added"                 ,1,   #-- selected.2 = 1	
+    "ADD Boeffla Kernel",                          "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"           ,0,   #-- selected.2 = 2
+    "No Changes",                                  "Default Rom Kernel will still be installed"                            ,0,   #-- selected.2 = 3
 
     "No-Verity Corner",                            ""                                                         ,2,   #-- Group 3. key = "selected.3"
     "Install No-Verity",                           "Removes Device-Mapper-Verity"                             ,1,   #-- selected.3 = 1

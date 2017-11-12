@@ -1,7 +1,7 @@
 
 <b><u>Changes since 2.0 build:</u></b>
 = Update stock kernel 
-= Upstream merge and XXXXXX security patch
+= Upstream merge
 = Update boeffla app
 = Update all aroma packages
 = Fix OOS Camera(Requires Lightning kernel/Included)
@@ -14,10 +14,11 @@
 = Add dci-p3 sysfs node 
 = Add remapping table for display modes
 = Add qdcm configs
-= Update srgb sysfs node name to match livedisplay driver
+= Update srgb sysfs node name to match livedisplay dvr
 = build: use optimal CPU configuration for ARMv8 CPUs
 = Major Aroma UI Updates:
-        Add Google Lens and Google Photos
-	Add Buttom Mapper as aroma package
-	Add Pixel Live Wallpapers
+    Add Google Lens and Google Photos
+    Add Buttom Mapper as aroma package
+    Add Pixel Live Wallpapers
+	
 ---------------------------------------------------------
