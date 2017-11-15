@@ -63,7 +63,7 @@ selectbox(
     "No Changes",                                  ""                                                         ,0,   #-- selected.1 = 2
 
     "Kernel Corner",                               ""                                                                      ,2,   #-- Group 2. key = "selected.2"
-    "ADD Lightning Kernel & OnePlus Camera",       "v13 - Must Choose This For OnePlus Camera To Be Added"                 ,1,   #-- selected.2 = 1	
+    "ADD Lightning Kernel & OnePlus Camera",       "v15 - Must Choose This For OnePlus Camera To Be Added"                 ,1,   #-- selected.2 = 1	
     "ADD Boeffla Kernel",                          "v1.04b4 - with Boeffla-Config App - created by Lord Boeffla"           ,0,   #-- selected.2 = 2
     "No Changes",                                  "Default Rom Kernel will still be installed"                            ,0,   #-- selected.2 = 3
 
