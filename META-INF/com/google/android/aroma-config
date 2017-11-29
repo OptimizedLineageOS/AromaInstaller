@@ -2,10 +2,10 @@
 ini_set("force_colorspace","rgba");
 
 ini_set("rom_name",             "Palm Project 14.1");
-ini_set("rom_version",          "3.0");
+ini_set("rom_version",          "Final 4.0");
 ini_set("rom_author",           "Palm Project Team");
 ini_set("rom_device",           "OnePlus5");
-ini_set("rom_date",             "November 2017");
+ini_set("rom_date",             "December 2017");
 
 
 anisplash(
