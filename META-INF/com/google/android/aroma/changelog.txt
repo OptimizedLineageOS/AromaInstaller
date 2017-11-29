@@ -1,24 +1,15 @@
 
-<b><u>Changes since 2.0 build:</u></b>
+<b><u>Changes since 3.0 build:</u></b>
 = Update stock kernel 
 = Upstream merge
 = Update boeffla app
 = Update all aroma packages
-= Fix OOS Camera(Requires Lightning kernel/Included)
-= Introduce the Boost Framework in the core
-= Some minor camera edits
-= Grab the some OOS changes
-= Introduce Color Engine ( Display / Color Engine )  
-= Add powerhint.xml for power hal
-= Build LiveDisplay native interface 
-= Add dci-p3 sysfs node 
-= Add remapping table for display modes
-= Add qdcm configs
-= Update srgb sysfs node name to match livedisplay dvr
-= build: use optimal CPU configuration for ARMv8 CPUs
-= Major Aroma UI Updates:
-    Add Google Lens and Google Photos
-    Add Buttom Mapper as aroma package
-    Add Pixel Live Wallpapers
+= Fix an issue where video rec couldnt record sound
+= Update boeffla kernel
+= Update lightning kernel
+= Revert all Palm themed QS stuff
+= Update our wallpaper
+= General cleanups and fixes
+
 	
 ---------------------------------------------------------
