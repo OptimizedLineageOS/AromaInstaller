@@ -385,12 +385,32 @@ ui_print("-- Installing OnePlus Camera...");
 package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
 ui_print("  ");
 endif;
+#####################################################
+# Add Flash Kernel
+
+if
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
+then
+ui_print("  ");
+ui_print("-- Installing Flash Kernel...");
+package_extract_dir("palm/flash", "/tmp/flash");
+run_program("/sbin/busybox", "unzip", "/tmp/flash/flash.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/flash");
+run_program("/sbin/busybox", "sh", "/tmp/flash/META-INF/com/google/android/update-binary", "null", "1", "/tmp/flash/flash.zip");
+delete_recursive("/tmp/flash");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("-- Flash Kernel installed successfully");
+ui_print("  ");
+ui_print("-- Installing OnePlus Camera...");
+package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
+ui_print("  ");
+endif;
 
 #####################################################
 # Add Boeffla Kernel
 
 if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "3"
 then
 ui_print("  ");
 ui_print("-- Installing Boeffla Kernel...");
@@ -411,7 +431,7 @@ endif;
 # No KERNEL INSTALL or STOCK KERNEL
 
 if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "3"
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "4"
 then
 ui_print("  ");
 ui_print("-- Custom Kernel Installation is being skipped");
