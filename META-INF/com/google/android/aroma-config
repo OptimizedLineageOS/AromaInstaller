@@ -72,7 +72,7 @@ selectbox(
       "rom.prop",
 
     "Rom Corner",                                  ""                                                                      ,2,   #-- Group 1. key = "selected.1"
-    "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2 and Magisk v14.3"                                         ,1,   #-- selected.1 = 1
+    "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2 and Magisk v14.0"                                        ,1,   #-- selected.1 = 1
     "No Changes",                                  ""                                                                      ,0,   #-- selected.1 = 2
 
     "Kernel Corner",                               ""                                                                      ,2,   #-- Group 2. key = "selected.2"
@@ -95,12 +95,10 @@ checkbox(
 
     "SELECT ITEMS TO ADD",                  ""                                                    ,2,    #-- Group 1. key = "selected.1"
     "Add Viper4Arise",                      "Magnum+Opus"                                         ,0,    #-- selected.1 = 1
-    "Add Pixel Launcher",                   ""                                                    ,0,    #-- selected.1 = 2
-    "Add Lawnchair Launcher",               ""                                                    ,0,    #-- selected.1 = 3
-    "Add Substratum Theme Engine",          "Includes BalticUI Theme"                             ,0,    #-- selected.1 = 4
-    "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 5
-    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 6
-    "Add SamsungOne Font",                  ""                                                    ,0     #-- selected.1 = 7
+    "Add Substratum Theme Engine",          "Includes BalticUI Theme"                             ,0,    #-- selected.1 = 2
+    "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 3
+    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 4
+    "Add SamsungOne Font",                  ""                                                    ,0     #-- selected.1 = 5
 );
 
 

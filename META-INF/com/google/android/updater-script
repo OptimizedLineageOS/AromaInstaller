@@ -11,10 +11,10 @@ ui_print("  ");
 ui_print("-- Installing Firmware/Modem v4.5.14...");
 ui_print("  ");
 
-ui_print("      ----------------------   ");
+ui_print("      ------------------------   ");
 ui_print("       OnePlus 5 OOS 4.5.14    ");
 ui_print("         Firmware + Radio      ");
-ui_print("      ----------------------   ");
+ui_print("      ------------------------   ");
 ui_print("1. Updating Radio Image");
 package_extract_file("palm/firmware/RADIO/static_nvbk.bin", "/dev/block/bootdevice/by-name/oem_stanvbk");
 ui_print("2. Updating Firmware Images");
@@ -570,41 +570,12 @@ delete_recursive("/system/priv-app/AudioFX");
 ui_print("########################################");
 endif;
 
-set_progress(0.54);
-#-------------------------------------------------------------------
-# Add Pixel Launcher 
-
-if
-file_getprop("/tmp/aroma/add1.prop","item.1.2") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Pixel Launcher and Wallpaper apps...");
-ui_print("  ");
-package_extract_dir("palm/google/launcher", "/system/priv-app/NexusLauncher");
-package_extract_dir("palm/google/wallpaper", "/system/priv-app/Wallpaper");
-ui_print("########################################");
-endif;
-
-set_progress(0.57);
-#-------------------------------------------------------------------
-# Add Lawnchair Launcher 
-
-if
-file_getprop("/tmp/aroma/add1.prop","item.1.3") == "1"
-then
-ui_print("  ");
-ui_print("-- Installing Lawnchair Launcher");
-ui_print("  ");
-package_extract_dir("palm/lawnchair", "/system/priv-app/Lawnchair");
-ui_print("########################################");
-endif;
-
 set_progress(0.60);
 #-------------------------------------------------------------------
 # Add Substratum
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.4") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Substratum Theme Engine...");
@@ -618,7 +589,7 @@ set_progress(0.63);
 # Add Ad-Away
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.3") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Ad-Away...");
@@ -632,7 +603,7 @@ set_progress(0.66);
 # Add Mixplorer
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.4") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Mixplorer...");
@@ -646,7 +617,7 @@ set_progress(0.69);
 # Add SamsungOne Font
 
 if
-file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.5") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing SamsungOne Font...");
