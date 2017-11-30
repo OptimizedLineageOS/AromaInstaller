@@ -401,6 +401,8 @@ ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("-- Flash Kernel installed successfully");
 ui_print("  ");
+ui_print("-- Installing kernel mod app...");
+package_extract_dir("palm/flash/app", "/system/priv-app/KernelAdiutorMod");
 ui_print("-- Installing OnePlus Camera...");
 package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
 ui_print("  ");
