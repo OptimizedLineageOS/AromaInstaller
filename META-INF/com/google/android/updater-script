@@ -1,15 +1,84 @@
 assert(getprop("ro.product.device") == "cheeseburger" || getprop("ro.build.product") == "cheeseburger" || abort("E3004: This package is for device: cheeseburger; this device is " + getprop("ro.product.device") + "."););
 ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
+
+#-------------------------------------------------------------------
+# Install Modem/Firmware
+
+if
+file_getprop("/tmp/aroma/modem.prop","selected.1") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Firmware/Modem v4.5.14...");
 ui_print("  ");
 
+ui_print("      ----------------------   ");
+ui_print("       OnePlus 5 OOS 4.5.14    ");
+ui_print("         Firmware + Radio      ");
+ui_print("      ----------------------   ");
+ui_print("1. Updating Radio Image");
+package_extract_file("palm/firmware/RADIO/static_nvbk.bin", "/dev/block/bootdevice/by-name/oem_stanvbk");
+ui_print("2. Updating Firmware Images");
+package_extract_file("palm/firmware/firmware-update/cmnlib64.mbn", "/dev/block/bootdevice/by-name/cmnlib64");
+package_extract_file("palm/firmware/firmware-update/cmnlib.mbn", "/dev/block/bootdevice/by-name/cmnlib");
+package_extract_file("palm/firmware/firmware-update/hyp.mbn", "/dev/block/bootdevice/by-name/hyp");
+package_extract_file("palm/firmware/firmware-update/pmic.elf", "/dev/block/bootdevice/by-name/pmic");
+package_extract_file("palm/firmware/firmware-update/tz.mbn", "/dev/block/bootdevice/by-name/tz");
+package_extract_file("palm/firmware/firmware-update/abl.elf", "/dev/block/bootdevice/by-name/abl");
+package_extract_file("palm/firmware/firmware-update/devcfg.mbn", "/dev/block/bootdevice/by-name/devcfg");
+package_extract_file("palm/firmware/firmware-update/keymaster.mbn", "/dev/block/bootdevice/by-name/keymaster");
+package_extract_file("palm/firmware/firmware-update/xbl.elf", "/dev/block/bootdevice/by-name/xbl");
+package_extract_file("palm/firmware/firmware-update/rpm.mbn", "/dev/block/bootdevice/by-name/rpm");
+ui_print("3. Updating Firmware Backup Images");
+package_extract_file("palm/firmware/firmware-update/cmnlib64.mbn", "/dev/block/bootdevice/by-name/cmnlib64bak");
+package_extract_file("palm/firmware/firmware-update/cmnlib.mbn", "/dev/block/bootdevice/by-name/cmnlibbak");
+package_extract_file("palm/firmware/firmware-update/hyp.mbn", "/dev/block/bootdevice/by-name/hypbak");
+package_extract_file("palm/firmware/firmware-update/tz.mbn", "/dev/block/bootdevice/by-name/tzbak");
+package_extract_file("palm/firmware/firmware-update/abl.elf", "/dev/block/bootdevice/by-name/ablbak");
+package_extract_file("palm/firmware/firmware-update/keymaster.mbn", "/dev/block/bootdevice/by-name/keymasterbak");
+package_extract_file("palm/firmware/firmware-update/xbl.elf", "/dev/block/bootdevice/by-name/xblbak");
+package_extract_file("palm/firmware/firmware-update/rpm.mbn", "/dev/block/bootdevice/by-name/rpmbak");
+ui_print("4. Updating Remaining Firmware Images");
+package_extract_file("palm/firmware/firmware-update/logo.bin", "/dev/block/bootdevice/by-name/LOGO");
+package_extract_file("palm/firmware/firmware-update/NON-HLOS.bin", "/dev/block/bootdevice/by-name/modem");
+package_extract_file("palm/firmware/firmware-update/adspso.bin", "/dev/block/bootdevice/by-name/dsp");
+package_extract_file("palm/firmware/firmware-update/BTFM.bin", "/dev/block/bootdevice/by-name/bluetooth");
 
-#####################################################
+ui_print("  ");
+ui_print("-- Firmware/Modem installed successfully");
+ui_print("  ");
+ui_print("-- Mounting  /system");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+endif;
+
+#-------------------------------------------------------------------
+# No Install Modem/Firmware
+
+if
+file_getprop("/tmp/aroma/modem.prop","selected.1") == "2"
+then
+ui_print("  ");
+ui_print("-- Mounting  /system");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("########################################");
+ui_print("  ");
+ui_print("-- Modem/Firmware Installation is being skipped");
+ui_print("  ");
+endif;
+
+#-------------------------------------------------------------------
+set_progress(0.02);
+ui_print("########################################");
+#-------------------------------------------------------------------
 # ROM INSTALL
 
 if
 file_getprop("/tmp/aroma/rom.prop","selected.1") == "1"
 then
+ui_print(" ");
 ui_print("-- Installing PALM PROJECT...");
 ui_print(" ");
 ui_print(" ");
@@ -348,28 +417,50 @@ ui_print("-- PALM PROJECT installed successfully");
 ui_print("  ");
 endif;
 
-#####################################################
+#-------------------------------------------------------------------
 # No ROM INSTALL
 
 if
 file_getprop("/tmp/aroma/rom.prop","selected.1") == "2"
 then
-ui_print("-- Mounting  /system");
-ui_print("  ");
-ui_print("########################################");
 ui_print("  ");
 ui_print("-- Palm Project Installation is being skipped");
 ui_print("  ");
 endif;
 
-#####################################################
+#-------------------------------------------------------------------
 set_progress(0.45);
 ui_print("########################################");
-#####################################################
-# Add Lightning Kernel
+#-------------------------------------------------------------------
+# Add Flash Kernel
 
 if
 file_getprop("/tmp/aroma/rom.prop","selected.2") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Flash Kernel...");
+package_extract_dir("palm/flash", "/tmp/flash");
+run_program("/sbin/busybox", "unzip", "/tmp/flash/flash.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/flash");
+run_program("/sbin/busybox", "sh", "/tmp/flash/META-INF/com/google/android/update-binary", "null", "1", "/tmp/flash/flash.zip");
+delete_recursive("/tmp/flash");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Flash Kernel installed successfully");
+ui_print("  ");
+ui_print("-- Installing Kernel Adiutor App...");
+package_extract_dir("palm/kerneladiutor", "/system/priv-app/KernelAdiutor");
+ui_print("  ");
+ui_print("-- Installing OnePlus Camera...");
+package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
+ui_print("  ");
+endif;
+
+#-------------------------------------------------------------------
+# Add Lightning Kernel
+
+if
+file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
 then
 ui_print("  ");
 ui_print("-- Installing Lightning Kernel...");
@@ -381,34 +472,15 @@ ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("-- Lightning Kernel installed successfully");
 ui_print("  ");
-ui_print("-- Installing OnePlus Camera...");
-package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
+ui_print("-- Installing Kernel Adiutor App...");
+package_extract_dir("palm/kerneladiutor", "/system/priv-app/KernelAdiutor");
 ui_print("  ");
-endif;
-#####################################################
-# Add Flash Kernel
-
-if
-file_getprop("/tmp/aroma/rom.prop","selected.2") == "2"
-then
-ui_print("  ");
-ui_print("-- Installing Flash Kernel...");
-package_extract_dir("palm/flash", "/tmp/flash");
-run_program("/sbin/busybox", "unzip", "/tmp/flash/flash.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/flash");
-run_program("/sbin/busybox", "sh", "/tmp/flash/META-INF/com/google/android/update-binary", "null", "1", "/tmp/flash/flash.zip");
-delete_recursive("/tmp/flash");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-ui_print("-- Flash Kernel installed successfully");
-ui_print("  ");
-ui_print("-- Installing kernel mod app...");
-package_extract_dir("palm/flash/app", "/system/priv-app/KernelAdiutorMod");
 ui_print("-- Installing OnePlus Camera...");
 package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
 ui_print("  ");
 endif;
 
-#####################################################
+#-------------------------------------------------------------------
 # Add Boeffla Kernel
 
 if
@@ -429,7 +501,7 @@ ui_print("-- Boeffla-Config App installed successfully");
 ui_print("  ");
 endif;
 
-#####################################################
+#-------------------------------------------------------------------
 # No KERNEL INSTALL or STOCK KERNEL
 
 if

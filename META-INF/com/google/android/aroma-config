@@ -53,24 +53,37 @@ fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
 
 
 selectbox(
-      "Install ROM",
+      "INSTALL FIRMWARE/MODEM",
+      "Please select:\n",
+      "@default",
+      "modem.prop",
+
+    "Firmware/Modem Corner",                                ""                                                     ,2,   #-- Group 1. key = "selected.1"
+    "Install Firmware and Modem",                           "v4.5.14 (Nov 2, 2017)"                                ,0,   #-- selected.1 = 1
+    "No Changes",                                           "Keep my current Firmware and Modem"                   ,1    #-- selected.1 = 2
+
+);
+
+
+selectbox(
+      "INSTALL ROM",
       "Please select:\n",
       "@default",
       "rom.prop",
 
     "Rom Corner",                                  ""                                                                      ,2,   #-- Group 1. key = "selected.1"
-    "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2"                                                         ,1,   #-- selected.1 = 1
+    "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2 and Magisk v14.3"                                         ,1,   #-- selected.1 = 1
     "No Changes",                                  ""                                                                      ,0,   #-- selected.1 = 2
 
     "Kernel Corner",                               ""                                                                      ,2,   #-- Group 2. key = "selected.2"
-    "ADD Lightning Kernel & OnePlus Camera",       "Must Choose This For OnePlus Camera To Be Added"                       ,0,   #-- selected.2 = 1	
-    "ADD Flash Kernel & OnePlus Camera",           "Must Choose This For OnePlus Camera To Be Added"                       ,1,   #-- selected.2 = 2
-    "ADD Boeffla Kernel",                          "Comes with Boeffla-Config App - You need GoogleCamera as camera app"   ,0,   #-- selected.2 = 3
+    "ADD Flash Kernel & OnePlus Camera",           "Choose This For OnePlus Camera To Be Added"                            ,1,   #-- selected.2 = 1
+    "ADD Lightning Kernel & OnePlus Camera",       "Choose This For OnePlus Camera To Be Added"                            ,0,   #-- selected.2 = 2	
+    "ADD Boeffla Kernel",                          "Comes with Boeffla-Config App"                                         ,0,   #-- selected.2 = 3
     "No Changes",                                  "Default Rom Kernel will still be installed"                            ,0,   #-- selected.2 = 4
 
-    "No-Verity Corner",                            ""                                                                       ,2,   #-- Group 3. key = "selected.3"
-    "Install No-Verity",                           "Removes Device-Mapper-Verity"                                           ,1,   #-- selected.3 = 1
-    "No Changes",                                  ""                                                                       ,0    #-- selected.3 = 2
+    "No-Verity Corner",                            ""                                                                      ,2,   #-- Group 3. key = "selected.3"
+    "Install No-Verity",                           "Removes Device-Mapper-Verity"                                          ,1,   #-- selected.3 = 1
+    "No Changes",                                  ""                                                                      ,0    #-- selected.3 = 2
 );
 
 
@@ -84,7 +97,7 @@ checkbox(
     "Add Viper4Arise",                      "Magnum+Opus"                                         ,0,    #-- selected.1 = 1
     "Add Pixel Launcher",                   ""                                                    ,0,    #-- selected.1 = 2
     "Add Lawnchair Launcher",               ""                                                    ,0,    #-- selected.1 = 3
-    "Add Substratum Theme Engine",          "includes BalticUI Theme"                             ,0,    #-- selected.1 = 4
+    "Add Substratum Theme Engine",          "Includes BalticUI Theme"                             ,0,    #-- selected.1 = 4
     "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 5
     "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 6
     "Add SamsungOne Font",                  ""                                                    ,0     #-- selected.1 = 7
@@ -99,7 +112,7 @@ checkbox(
 
     "SELECT ITEMS TO ADD",                  ""                                                    ,2,    #-- Group 1. key = "selected.1"
     "Add Google Lens",                      "Use Google Photos to search for info on photos"      ,0,    #-- selected.1 = 1
-	"Add Google Live Wallpapers",           "includes Live Earth Wallpaper"                       ,0,    #-- selected.1 = 2
+	"Add Google Live Wallpapers",           "Includes Live Earth Wallpaper"                       ,0,    #-- selected.1 = 2
     "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 3
 );
 
