@@ -125,8 +125,7 @@ checkbox(
 
     "SELECT MAGISK MODULES TO ADD",            ""                                                       ,2,    #-- Group 1. key = "selected.1"
     "Add Ad-Free YouTube 4K",                  ""                                                       ,0,    #-- selected.1 = 1
-    "Add iOS11 Themed Emojis",                 "Change system emojis to a higher detail"                ,0,    #-- selected.1 = 2
-    "Enable HEVC/H.265 Video Recording",       ""                                                       ,0     #-- selected.1 = 3
+    "Add iOS11 Themed Emojis",                 "Change system emojis to a higher detail"                ,0    #-- selected.1 = 2
 );
 
 
