@@ -40,7 +40,7 @@ viewbox(
 
 
 textbox(
-    "<~changelog.title>",
+    "CHANGELOG",
     "Palm Project Changelog",
     "@update",
     resread("changelog.txt")
@@ -71,19 +71,19 @@ selectbox(
       "@default",
       "rom.prop",
 
-    "Rom Corner",                                  ""                                                                      ,2,   #-- Group 1. key = "selected.1"
-    "Install Rom with Stock Kernel and Magisk",    "Android 7.1.2 w/ Magisk v13.6 & Manager 5.4.3"                         ,1,   #-- selected.1 = 1
-    "No Changes",                                  ""                                                                      ,0,   #-- selected.1 = 2
+    "Rom Corner",                                  ""                                                   ,2,   #-- Group 1. key = "selected.1"
+    "Install Rom with Stock Kernel and Magisk",    "includes Magisk v13.6 & Manager v5.4.3"             ,1,   #-- selected.1 = 1
+    "No Changes",                                  ""                                                   ,0,   #-- selected.1 = 2
 
-    "Kernel Corner",                               ""                                                                      ,2,   #-- Group 2. key = "selected.2"
-    "ADD Flash Kernel & OnePlus Camera",           "Choose This For OnePlus Camera To Be Added"                            ,1,   #-- selected.2 = 1
-    "ADD Lightning Kernel & OnePlus Camera",       "Choose This For OnePlus Camera To Be Added"                            ,0,   #-- selected.2 = 2	
-    "ADD Boeffla Kernel",                          "Comes with Boeffla-Config App"                                         ,0,   #-- selected.2 = 3
-    "No Changes",                                  "Default Rom Kernel will still be installed"                            ,0,   #-- selected.2 = 4
+    "Kernel Corner",                               ""                                                   ,2,   #-- Group 2. key = "selected.2"
+    "ADD Flash Kernel & OnePlus Camera",           "Choose This For OnePlus Camera To Be Added"         ,1,   #-- selected.2 = 1
+    "ADD Lightning Kernel & OnePlus Camera",       "Choose This For OnePlus Camera To Be Added"         ,0,   #-- selected.2 = 2	
+    "ADD Boeffla Kernel",                          "Comes with Boeffla-Config App"                      ,0,   #-- selected.2 = 3
+    "No Changes",                                  "Default Rom Kernel will still be installed"         ,0,   #-- selected.2 = 4
 
-    "No-Verity Corner",                            ""                                                                      ,2,   #-- Group 3. key = "selected.3"
-    "Install No-Verity",                           "Removes Device-Mapper-Verity"                                          ,1,   #-- selected.3 = 1
-    "No Changes",                                  ""                                                                      ,0    #-- selected.3 = 2
+    "No-Verity Corner",                            ""                                                   ,2,   #-- Group 3. key = "selected.3"
+    "Install No-Verity",                           "Removes Device-Mapper-Verity"                       ,1,   #-- selected.3 = 1
+    "No Changes",                                  ""                                                   ,0    #-- selected.3 = 2
 );
 
 
@@ -110,7 +110,7 @@ checkbox(
 
     "SELECT ITEMS TO ADD",                  ""                                                    ,2,    #-- Group 1. key = "selected.1"
     "Add Google Lens",                      "Use Google Photos to search for info on photos"      ,0,    #-- selected.1 = 1
-	"Add Google Live Wallpapers",           "Includes Live Earth Wallpaper"                       ,0,    #-- selected.1 = 2
+    "Add Google Live Wallpapers",           "Includes Live Earth Wallpaper"                       ,0,    #-- selected.1 = 2
     "Update Google Dialer/Contacts/Messages",        "Set Phone App as default (Settings > Apps > Phone > Phone App > Phone App > select Phone)"      ,0    #-- selected.1 = 3
 );
 
@@ -136,7 +136,7 @@ checkbox(
     "SELECT ITEMS TO REMOVE",               ""                                                 ,2,    #-- Group 1. key = "selected.1"
     "Remove Jelly Browser",                 ""                                                 ,0,    #-- selected.1 = 1
     "Remove Eleven Player",                 ""                                                 ,0,    #-- selected.1 = 2
-	"Remove Google Camera",                 ""                                                 ,0     #-- selected.1 = 3
+    "Remove Google Camera",                 ""                                                 ,0     #-- selected.1 = 3
 );
 
 
@@ -144,7 +144,7 @@ ini_set("text_next", "Install Now");
 
 
 viewbox(
-    "Ready to Install",
+    "READY TO INSTALL",
     "The wizard is ready to begin installation.\n\n"+
     "Press <b>Install Now</b> to begin the installation.\n\n"+
     "If you want to make any changes, press <b>Back</b>.\n\n"+
@@ -161,7 +161,7 @@ restotmp("exec_demo/sleep","sleep");
 
 setvar("retstatus",
   install(
-      "Installing",
+      "INSTALLING",
       "<b>"+ini_get("rom_name")+"</b> is being installed.\n\n"+
       "<b>Please wait... This may take several minutes.</b>",
       "@install",
@@ -175,7 +175,7 @@ ini_set("text_next", "Finish");
 
 
 viewbox(
-    "Installation Completed",
+    "INSTALL COMPLETED",
 
     "<#selectbg_g><b>Congratulations...</b></#>\n\n"+
     "<b>"+ini_get("rom_name")+"</b> has been installed.\n\n"+
