@@ -72,7 +72,7 @@ selectbox(
       "rom.prop",
 
     "Rom Corner",                                  ""                                                   ,2,   #-- Group 1. key = "selected.1"
-    "Install Rom with Stock Kernel and Magisk",    "includes Magisk v13.6 & Manager v5.4.3"             ,1,   #-- selected.1 = 1
+    "Install Rom with Stock Kernel and Magisk",    "Includes Magisk v13.6 & Manager v5.4.3"             ,1,   #-- selected.1 = 1
     "No Changes",                                  ""                                                   ,0,   #-- selected.1 = 2
 
     "Kernel Corner",                               ""                                                   ,2,   #-- Group 2. key = "selected.2"
@@ -176,7 +176,6 @@ ini_set("text_next", "Finish");
 
 viewbox(
     "INSTALL COMPLETED",
-
     "<#selectbg_g><b>Congratulations...</b></#>\n\n"+
     "<b>"+ini_get("rom_name")+"</b> has been installed.\n\n"+
     "Installer Status: "+getvar("retstatus")+"\n\n\n\n\n\n"+
