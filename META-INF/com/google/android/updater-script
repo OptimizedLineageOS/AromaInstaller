@@ -311,7 +311,7 @@ set_progress(0.70);
 # Add Google Lens
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.1") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.6") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Google Lens...");
@@ -325,7 +325,7 @@ set_progress(0.75);
 # Add Google Live Wallpapers
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.2") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.7") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Google Live Wallpapers...");
@@ -339,7 +339,7 @@ set_progress(0.81);
 # Update Google Dialer/Contacts/Messages
 
 if
-file_getprop("/tmp/aroma/add2.prop","item.1.3") == "1"
+file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");
@@ -396,40 +396,12 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.90);
-#-------------------------------------------------------------------
-# Remove Jelly Browser
-
-if
-file_getprop("/tmp/aroma/remove.prop","item.1.1") == "1"
-then
-ui_print("  ");
-ui_print("-- Removing Jelly Browser...");
-ui_print("  ");
-delete_recursive("/system/app/Jelly");
-ui_print("########################################");
-endif;
-
-set_progress(0.93);
-#-------------------------------------------------------------------
-# Remove Eleven Player
-
-if
-file_getprop("/tmp/aroma/remove.prop","item.1.2") == "1"
-then
-ui_print("  ");
-ui_print("-- Removing Eleven Player...");
-ui_print("  ");
-delete_recursive("/system/priv-app/Eleven");
-ui_print("########################################");
-endif;
-
 set_progress(0.96);
 #-------------------------------------------------------------------
 # Remove Google Camera
 
 if
-file_getprop("/tmp/aroma/remove.prop","item.1.3") == "1"
+file_getprop("/tmp/aroma/remove.prop","item.1.1") == "1"
 then
 ui_print("  ");
 ui_print("-- Removing Google Camera...");
