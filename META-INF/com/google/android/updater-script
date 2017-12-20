@@ -91,18 +91,15 @@ ui_print("-- Formatting System");
 ui_print("  ");
 format("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "0", "/system");
 show_progress(0.10, 0);
-ui_print("-- Mounting System after format");
-ui_print("  ");
-mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system", "max_batch_time=0,commit=1,data=ordered,barrier=1,errors=panic,nodelalloc");
-ui_print("  ");
+run_program("/sbin/busybox", "mount", "/system");
 ui_print("-- Trimming partitions before installation");
+ui_print("  ");
 package_extract_dir("palm/trim", "/tmp/trim");
 set_metadata_recursive("/tmp/trim", "uid", 0, "gid", 0, "dmode", 0777, "fmode", 0777);
 run_program("/tmp/trim/emmc_trim.sh");
 delete_recursive("/tmp/trim");
 ifelse(is_mounted("/system"), unmount("/system"));
 show_progress(0.15, 0);
-ui_print("  ");
 ui_print("-- Flashing System");
 ui_print("-- BE PATIENT! This may take a couple minutes");
 ui_print("  ");
@@ -110,21 +107,19 @@ show_progress(0.750000, 0);
 block_image_update("/dev/block/bootdevice/by-name/system", package_extract_file("system.transfer.list"), "system.new.dat", "system.patch.dat");
 ui_print("-- Flashing System completed successfully");
 ui_print("  ");
-show_progress(0.35, 0);
-ui_print("-- Installing boot.img...");
+show_progress(0.25, 0);
+ui_print("-- Installing Boot.img...");
 ui_print("  ");
 package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
-ui_print("-- boot.img installed successfully");
+ui_print("-- Boot.img installed successfully");
 ui_print("  ");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("-- Installing System Add-ons...");
+ui_print("  ");
 package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
 delete_recursive("/system/priv-app/OnePlusCamera");
-ifelse(is_mounted("/system"), unmount("/system"));
-run_program("/sbin/busybox", "mount", "/system");
-set_progress(0.40);
-ui_print("  ");
+set_progress(0.30);
 ui_print("----------------------------------------");
 ui_print("  ");
 ui_print("-- Installing Magisk binaries...");
@@ -154,7 +149,7 @@ ui_print("  ");
 endif;
 
 #-------------------------------------------------------------------
-set_progress(0.45);
+set_progress(0.35);
 ui_print("########################################");
 #-------------------------------------------------------------------
 # Add Flash Kernel
@@ -164,21 +159,21 @@ file_getprop("/tmp/aroma/rom.prop","selected.2") == "1"
 then
 ui_print("  ");
 ui_print("-- Installing Flash Kernel...");
+ui_print("  ");
 package_extract_dir("palm/flash", "/tmp/flash");
 run_program("/sbin/busybox", "unzip", "/tmp/flash/flash.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/flash");
 run_program("/sbin/busybox", "sh", "/tmp/flash/META-INF/com/google/android/update-binary", "null", "1", "/tmp/flash/flash.zip");
 delete_recursive("/tmp/flash");
 ifelse(is_mounted("/system"), unmount("/system"));
 run_program("/sbin/busybox", "mount", "/system");
-ui_print("  ");
 ui_print("-- Flash Kernel installed successfully");
 ui_print("  ");
 ui_print("-- Installing Kernel Adiutor App...");
+ui_print("  ");
 package_extract_dir("palm/kerneladiutor", "/system/priv-app/KernelAdiutor");
-ui_print("  ");
 ui_print("-- Installing OnePlus Camera...");
-package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
 ui_print("  ");
+package_extract_dir("palm/ooscam", "/system/priv-app/OnePlusCamera");
 endif;
 
 #-------------------------------------------------------------------
@@ -192,7 +187,7 @@ ui_print("-- Custom Kernel Installation is being skipped");
 ui_print("  ");
 endif;
 
-set_progress(0.48);
+set_progress(0.40);
 ui_print("########################################");
 
 #-------------------------------------------------------------------
@@ -227,7 +222,7 @@ ui_print("-- No-Verity is being skipped");
 ui_print("  ");
 endif;
 
-set_progress(0.51);
+set_progress(0.45);
 ui_print("########################################");
 
 #-------------------------------------------------------------------
@@ -250,7 +245,7 @@ delete_recursive("/system/priv-app/AudioFX");
 ui_print("########################################");
 endif;
 
-set_progress(0.54);
+set_progress(0.50);
 #-------------------------------------------------------------------
 # Add Substratum
 
@@ -264,7 +259,7 @@ package_extract_dir("palm/substratum", "/system/priv-app");
 ui_print("########################################");
 endif;
 
-set_progress(0.58);
+set_progress(0.55);
 #-------------------------------------------------------------------
 # Add Ad-Away
 
@@ -278,7 +273,7 @@ package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
 ui_print("########################################");
 endif;
 
-set_progress(0.62);
+set_progress(0.60);
 #-------------------------------------------------------------------
 # Add Trebuchet Launcher
 
@@ -292,7 +287,7 @@ package_extract_dir("palm/trebuchet", "/system/priv-app/Trebuchet");
 ui_print("########################################");
 endif;
 
-set_progress(0.67);
+set_progress(0.65);
 #-------------------------------------------------------------------
 # Add Mixplorer
 
@@ -334,7 +329,7 @@ package_extract_dir("palm/wallpapers", "/system/priv-app");
 ui_print("########################################");
 endif;
 
-set_progress(0.81);
+set_progress(0.80);
 #-------------------------------------------------------------------
 # Update Google Dialer/Contacts/Messages
 
@@ -343,15 +338,15 @@ file_getprop("/tmp/aroma/add1.prop","item.1.8") == "1"
 then
 ui_print("  ");
 ui_print("-- Updating Google Dialer/Contacts/Messages...");
+ui_print("  ");
 package_extract_dir("palm/google/dialer/system", "/system");
 delete_recursive("/system/priv-app/Contacts");
 delete_recursive("/system/priv-app/Dialer");
 delete_recursive("/system/app/messaging");
-ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.83);
+set_progress(0.85);
 #-------------------------------------------------------------------
 # Add Ad-Free Youtube 4K
 
@@ -375,7 +370,7 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.85);
+set_progress(0.90);
 #-------------------------------------------------------------------
 # Add iOS11 Emojis
 
@@ -396,7 +391,7 @@ ui_print("  ");
 ui_print("########################################");
 endif;
 
-set_progress(0.96);
+set_progress(0.95);
 #-------------------------------------------------------------------
 # Remove Google Camera
 
