@@ -2,10 +2,10 @@
 ini_set("force_colorspace","rgba");
 
 ini_set("rom_name",             "Palm Project 14.1");
-ini_set("rom_version",          "5.0-Xmas");
+ini_set("rom_version",          "6.0");
 ini_set("rom_author",           "Palm Project Team");
 ini_set("rom_device",           "OnePlus5");
-ini_set("rom_date",             "December 25, 2017");
+ini_set("rom_date",             "May 02, 2018");
 
 
 anisplash(
@@ -97,7 +97,7 @@ checkbox(
     "Add Viper4Arise",                      "Magnum+Opus"                                         ,0,    #-- selected.1 = 1
     "Add Substratum Theme Engine",          "Includes BalticUI Theme"                             ,0,    #-- selected.1 = 2
     "Add Ad-Away",                          ""                                                    ,0,    #-- selected.1 = 3
-    "Add Mixplorer",                        "v6.20.4.. Root Explorer"                             ,0,    #-- selected.1 = 4
+    "Add Mixplorer",                        "v6.27.4.. Root Explorer"                             ,0,    #-- selected.1 = 4
     "Add SamsungOne Font",                  ""                                                    ,0     #-- selected.1 = 5
 );
 
