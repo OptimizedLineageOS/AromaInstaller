@@ -1,0 +1,201 @@
+assert(getprop("ro.product.device") == "cheeseburger" || getprop("ro.build.product") == "cheeseburger" || abort("E3004: This package is for device: cheeseburger; this device is " + getprop("ro.product.device") + "."););
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+
+ui_print("########################################");
+
+#-------------------------------------------------------------------
+# Add Flash Kernel
+
+if
+file_getprop("/tmp/aroma/page1.prop","selected.1") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Flash Kernel...");
+package_extract_dir("palm/flash", "/tmp/flash");
+run_program("/sbin/busybox", "unzip", "/tmp/flash/flash.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/flash");
+run_program("/sbin/busybox", "sh", "/tmp/flash/META-INF/com/google/android/update-binary", "null", "1", "/tmp/flash/flash.zip");
+delete_recursive("/tmp/flash");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Flash Kernel installed successfully");
+ui_print("  ");
+endif;
+
+#-------------------------------------------------------------------
+# No KERNEL INSTALL or STOCK KERNEL
+
+if
+file_getprop("/tmp/aroma/page1.prop","selected.1") == "2"
+then
+ui_print("  ");
+ui_print("-- Custom Kernel Installation is being skipped");
+ui_print("  ");
+endif;
+
+ui_print("########################################");
+#-------------------------------------------------------------------
+# MAGISK INSTALL
+
+if
+file_getprop("/tmp/aroma/page1.prop","selected.2") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Magisk binaries...");
+ui_print("  ");
+package_extract_dir("palm/magisk", "/tmp/magisk");
+run_program("/sbin/busybox", "unzip", "/tmp/magisk/magisk.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/magisk");
+run_program("/sbin/busybox", "sh", "/tmp/magisk/META-INF/com/google/android/update-binary", "null", "1", "/tmp/magisk/magisk.zip");
+delete_recursive("/tmp/magisk");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("  ");
+ui_print("-- Magisk installed successfully");
+ui_print("  ");
+endif;
+
+#-------------------------------------------------------------------
+# NO MAGISK INSTALL
+
+if
+file_getprop("/tmp/aroma/page1.prop","selected.2") == "2"
+then
+ui_print("  ");
+ui_print("-- Magisk Installation is being skipped");
+ui_print("  ");
+endif;
+
+ui_print("########################################");
+#-------------------------------------------------------------------
+# Add Viper4Arise
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.1") == "1"
+then
+ui_print("  ");
+ui_print("-- ViPER4Arise is installing");
+run_program("/sbin/busybox", "mount", "/data");
+package_extract_dir("palm/arise/prop", "/data/media/0");
+package_extract_dir("palm/arise/install", "/tmp/arise");
+run_program("/sbin/busybox", "unzip", "/tmp/arise/arise.zip", "META-INF/com/google/android/update-binary", "-d", "/tmp/arise");
+run_program("/sbin/busybox", "sh", "/tmp/arise/META-INF/com/google/android/update-binary", "null", "1", "/tmp/arise/arise.zip");
+delete_recursive("/tmp/arise");
+ifelse(is_mounted("/system"), unmount("/system"));
+run_program("/sbin/busybox", "mount", "/system");
+delete_recursive("/system/priv-app/AudioFX");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Ad-Away
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.2") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Ad-Away...");
+ui_print("  ");
+package_extract_dir("palm/adaway", "/system/priv-app/AdAway");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Trebuchet Launcher
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.3") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Trebuchet Launcher...");
+package_extract_dir("palm/trebuchet", "/system/priv-app/Trebuchet");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Mixplorer
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.4") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Mixplorer...");
+ui_print("  ");
+package_extract_dir("palm/mixplorer", "/system/priv-app/Mixplorer");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Google Camera
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.5") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Camera...");
+package_extract_dir("palm/google/camera", "/system/priv-app/GoogleCamera");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Google Lens
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.6") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Lens...");
+ui_print("  ");
+package_extract_dir("palm/google/lens/system", "/system");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Google Live Wallpapers
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.7") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Google Live Wallpapers...");
+ui_print("  ");
+package_extract_dir("palm/wallpapers", "/system/priv-app");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Add Ad-Free Youtube
+
+if
+file_getprop("/tmp/aroma/page2.prop","item.1.8") == "1"
+then
+ui_print("  ");
+ui_print("-- Installing Ad-Free YouTube...");
+package_extract_dir("palm/youtube", "/system/priv-app/YouTubeVanced");
+ui_print("  ");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+# Remove Eleven Player
+
+if
+file_getprop("/tmp/aroma/remove.prop","item.1.1") == "1"
+then
+ui_print("  ");
+ui_print("-- Removing Eleven Player...");
+ui_print("  ");
+delete_recursive("/system/priv-app/Eleven");
+ui_print("########################################");
+endif;
+
+#-------------------------------------------------------------------
+
+ui_print("  ");
+ui_print("-- Unmounting /system");
+ui_print("  ");
+ifelse(is_mounted("/system"), unmount("/system"));
+ui_print("-- Done!");
+set_progress(1.0);
